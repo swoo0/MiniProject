@@ -121,11 +121,8 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-2 pb-2 mb-2 d-flex">
-<!--         <div class="image"> -->
-<%--           <img src="<%=request.getContextPath()%>/resources/images/logo_anyang.svg" class="elevation-2" alt="User Image"> --%>
-<!--         </div> -->
         <div class="info">
-          <a href="#" class="d-block" style="font-size:x-large;">안양시 주택 입지분석</a>
+          <span class="d-block" style="font-size:1.4em;">안양시 주택 입지 분석</span>
         </div>
       </div>
 
@@ -144,58 +141,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               
-               
-          <li class="nav-header">EXAMPLES</li>
-          
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Tables
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-
+          <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
           <li class="nav-header">시군구</li>
           <li class="nav-item">
             <div class="nav-link">
@@ -222,36 +168,33 @@
 			  </select>
             </div>
           </li>
-
 		  
 		  <li class="nav-header">세권</li>
-		  
-		  
 		  <li class="nav-item">
             <div class="nav-link d-flex">
 		      <i class="nav-icon far fa-plus-square"></i>
-		        <div class="form-group d-flex flex-wrap">
-		          <div class="form-check">
+		        <div class="form-group d-flex flex-wrap ml-2 mb-1">
+		          <div class="form-check ml-2 mb-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">역세권</label>
 		          </div>
-		          <div class="form-check">
+		          <div class="form-check ml-2 mb-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">학세권</label>
 		          </div>
-		          <div class="form-check">
+		          <div class="form-check ml-2 mb-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">숲세권</label>
 		          </div>
-		          <div class="form-check">
+		          <div class="form-check ml-2 mb-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">몰세권</label>
 		          </div>
-		          <div class="form-check">
+		          <div class="form-check ml-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">의세권</label>
 		          </div>
-		          <div class="form-check">
+		          <div class="form-check ml-2 mr-2">
 		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
 		            <label class="form-check-label">견세권</label>
 		          </div>
@@ -265,8 +208,6 @@
     
   </aside>
 
-
-
 <!-- 
 역세권 - 지하철 500m
 학세권 - 초중고 500m
@@ -276,43 +217,24 @@
 견세권 - 24시동물병원 500m
  -->
 
-
-
-
-
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div><!-- /.content-header -->
+  <div class="content-wrapper" style="height:640px">
 
     <!-- Main content -->
 	<div id="map"></div>
 	
-  </div><!-- /.content-wrapper -->
+  </div>
+  <!-- /.content-wrapper -->
   
   
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+  <footer class="main-footer p-2">
+    <strong>COPYRIGHT &nbsp;<a href="http://www.forcewave.co.kr/">㈜ FORCE WAVE</a>&nbsp;&nbsp;</strong>
+    All Rights Reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      <b></b>
     </div>
   </footer>
-
+  
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -325,7 +247,7 @@
 
 <script type="text/javascript">
 	var view = new ol.View({
-		center : [ 14138984.363280362, 4514923.621443103 ],
+		center : [ 14129881.51978185, 4494741.861425608 ],
 		zoom : 11
 	});
 	
@@ -333,13 +255,12 @@
 		url : 'http://127.0.0.1:8080/geoserver/wms',
 		params : {
 			VERSION : '1.3.0',
-			LAYERS : 'cite:admin_emd',
-			//LAYERS : 'seoul:admin_emd',
+			LAYERS : 'mini:lsmd_adm_sect_umd_41',
 			//LAYERS : 'seoul:admin_emd,seoul:subway,seoul:subway_station',
 			WIDTH : 256,
 			HEIGHT : 256,
-			STYLES : 'population_density',
-			CRS : 'EPSG:3857',
+ 			STYLES : 'LSMD_ADM_SECT_UMD_41',
+			CRS : 'EPSG:5174',
 			TILED : true
 		},
 		serverType : 'geoserver'
@@ -373,8 +294,6 @@ function onChange(e) {
 		
 	});
 }
-
-
 </script>
 
 
