@@ -43,6 +43,8 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/daterangepicker/daterangepicker.css">
 	<!-- summernote -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/summernote/summernote-bs4.min.css">
+	
+	
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -175,28 +177,28 @@
 		      <i class="nav-icon far fa-plus-square"></i>
 		        <div class="form-group d-flex flex-wrap ml-2 mb-1">
 		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="subway" onchange="onChange()">
 		            <label class="form-check-label">역세권</label>
 		          </div>
 		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="school" onchange="onChange()">
 		            <label class="form-check-label">학세권</label>
 		          </div>
 		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="park" onchange="onChange()">
 		            <label class="form-check-label">숲세권</label>
 		          </div>
 		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="mall" onchange="onChange()">
 		            <label class="form-check-label">몰세권</label>
 		          </div>
 		          <div class="form-check ml-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="hospital" onchange="onChange()">
 		            <label class="form-check-label">의세권</label>
 		          </div>
 		          <div class="form-check ml-2 mr-2">
-		            <input class="form-check-input" type="checkbox" onchange="onChange(this)">
-		            <label class="form-check-label">견세권</label>
+		            <input type="checkbox" class="form-check-input" name="checkbox" value="animal24" onchange="onChange()">
+		            <label class="form-check-label" >견세권</label>
 		          </div>
 		        </div>
             </div>
@@ -246,56 +248,81 @@
 
 
 <script type="text/javascript">
-	var view = new ol.View({
-		center : [ 14129881.51978185, 4494741.861425608 ],
-		zoom : 11
-	});
+	// VWorld Map attribuions
+	var vworldMapAttr = 'Data by <a href="http://map.vworld.kr/">VWORLD MAP';
 	
+	// VWorld Base MAP XYZ URL
+	var vworldMapBaseMAPUrl = 'http://xdworld.vworld.kr:8080/2d/Base/201512/{z}/{x}/{y}.png';
+
+	var view = new ol.View({
+		center : ol.proj.transform([ 127, 37 ], 'EPSG:4326', 'EPSG:3857'),
+// 		center : [ 14129881.51978185, 4494741.861425608 ],
+		zoom : 9,
+		minZoom: 6, 
+		maxZoom: 16
+	});
+
 	var tileSource = new ol.source.TileWMS({
 		url : 'http://127.0.0.1:8080/geoserver/wms',
 		params : {
 			VERSION : '1.3.0',
-			LAYERS : 'mini:lsmd_adm_sect_umd_41',
+			LAYERS : 'mini:anyang_umd',
 			//LAYERS : 'seoul:admin_emd,seoul:subway,seoul:subway_station',
 			WIDTH : 256,
 			HEIGHT : 256,
- 			STYLES : 'LSMD_ADM_SECT_UMD_41',
+ 			STYLES : 'ANYANG_UMD',
 			CRS : 'EPSG:5174',
 			TILED : true
 		},
 		serverType : 'geoserver'
 	});
 	
-	var layers = [
-		new ol.layer.Tile({
-			source : new ol.source.OSM()
-		}), new ol.layer.Tile({
-			source : tileSource
-		})
-	];
 	
-	var map = new ol.Map({
+	
+	
+	// VWorld Base MAP
+	var vworldBaseMap = new ol.Map({
 		target : 'map',
-		view : view,
-		layers : layers
+		renderer : 'canvas',
+		layers : [
+			new ol.layer.Tile({
+				title : 'VWORLD MAP-BASE',
+				source : new ol.source.XYZ({
+					attribuions : vworldMapAttr,
+					url : vworldMapBaseMAPUrl
+				})
+			}),
+			new ol.layer.Tile({
+				source : tileSource
+			})
+		],
+		view : view
 	});
 	
-	//map.getLayers().getArray()[1].getSource().updateParams({'CQL_FILTER': 'POP2007 > 40000'});
+	// map.getLayers().getArray()[1].getSource().updateParams({'CQL_FILTER': 'POP2007 > 40000'});
 </script>
 
-<script>
 
 <!-- 체크박스 등록 및 해제 -->
-function onChange(e) {
-	$(e).change(function() {
-		console.log(e.checked);
-		
-// 		if (e.checked == ture) {
-		
-	});
-}
-</script>
+<script>
 
+function onChange() {
+	
+	var chk_arr = [];
+
+	// 체크된 리스트 가져와서 value 추출
+	$("input[name=checkbox]:checked").each(function() {
+		var chk = $(this).val();
+		chk_arr.push(chk);
+	});
+	console.log(chk_arr);
+	
+	
+	
+};
+	
+	
+</script>
 
 
 <!-- jQuery -->

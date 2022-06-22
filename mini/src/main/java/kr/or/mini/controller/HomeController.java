@@ -31,13 +31,6 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value = "ol/ol3_101", method = RequestMethod.GET)
-	public String ol101() {
-		String url = "ol/ol3_101";
-		
-		return url;
-	}
-	
 	@RequestMapping(value = "/ol/ol3_306", method = RequestMethod.GET)
 	public String ol3_106() {
 		String url = "ol/ol3_306";
@@ -45,7 +38,7 @@ public class HomeController {
 		return url;
 	}
 	
-	@RequestMapping(value = "/test/test", method = RequestMethod.GET)
-	public void test() {}
+	@RequestMapping(value = "/vworld", method = RequestMethod.GET)
+	public void vworld() {}
 
 }
