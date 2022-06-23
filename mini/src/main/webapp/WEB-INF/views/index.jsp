@@ -44,6 +44,27 @@
 	<!-- summernote -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/summernote/summernote-bs4.min.css">
 	
+	<!-- 카카오지도 API -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc1f59f75ca7c1959a90dcd3251e809"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc1f59f75ca7c1959a90dcd3251e809&libraries=services,clusterer,drawing"></script>
+	
+<style>
+html, body {width:100%;height:100%;margin:0;padding:0;} 
+.map_wrap {position:relative;overflow:hidden;width:100%;height:100%;}
+.radius_border{border:1px solid #919191;border-radius:5px;}     
+.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
+.custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
+.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+.custom_typecontrol .selected_btn:hover {color:#fff;}   
+.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
+.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
+.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
+.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
+</style>
+	
 	
 </head>
 
@@ -175,58 +196,71 @@
 		  <li class="nav-item">
             <div class="nav-link d-flex">
 		      <i class="nav-icon far fa-plus-square"></i>
-		        <div class="form-group d-flex flex-wrap ml-2 mb-1">
-		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="subway" onchange="onChange()">
-		            <label class="form-check-label">역세권</label>
-		          </div>
-		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="school" onchange="onChange()">
-		            <label class="form-check-label">학세권</label>
-		          </div>
-		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="park" onchange="onChange()">
-		            <label class="form-check-label">숲세권</label>
-		          </div>
-		          <div class="form-check ml-2 mb-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="mall" onchange="onChange()">
-		            <label class="form-check-label">몰세권</label>
-		          </div>
-		          <div class="form-check ml-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="hospital" onchange="onChange()">
-		            <label class="form-check-label">의세권</label>
-		          </div>
-		          <div class="form-check ml-2 mr-2">
-		            <input type="checkbox" class="form-check-input" name="checkbox" value="animal24" onchange="onChange()">
-		            <label class="form-check-label" >견세권</label>
-		          </div>
-		        </div>
+		     	<form role="form" method="post" action="building/search" name="searchBuilding">
+			      <div class="form-group d-flex flex-wrap ml-2 mb-1">
+			        <div class="form-check ml-2 mb-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="subway" value="subway" onchange="onChange()">
+			          <label class="form-check-label">역세권</label>
+			        </div>
+			        <div class="form-check ml-2 mb-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="school" value="school" onchange="onChange()">
+			          <label class="form-check-label">학세권</label>
+			        </div>
+			        <div class="form-check ml-2 mb-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="park" value="park" onchange="onChange()">
+			          <label class="form-check-label">숲세권</label>
+			        </div>
+			        <div class="form-check ml-2 mb-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="mall" value="mall" onchange="onChange()">
+			          <label class="form-check-label">몰세권</label>
+			        </div>
+			        <div class="form-check ml-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="hospital" value="hospital" onchange="onChange()">
+			          <label class="form-check-label">의세권</label>
+			        </div>
+			        <div class="form-check ml-2 mr-2">
+			          <input type="checkbox" class="form-check-input searchType" name="animal24" value="animal24" onchange="onChange()">
+			          <label class="form-check-label" >견세권</label>
+			        </div>
+			      </div>
+		      </form> 
             </div>
           </li>
+          
+          <div class="row">
+            <div class="col-2 ml-2"></div>
+          	<div class="col-4">
+          		<button type="button" class="btn btn-primary" id="searchBtn" onclick="search_go();">조&nbsp;&nbsp;회</button>  
+          	</div>
+          	<div class="col-4">
+          		<button type="button" class="btn btn-primary" id="resetBtn" onclick="reset_go();">초기화</button>  
+          	</div>
+          </div>
 		    
         </ul>
       </nav><!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->
-    
   </aside>
 
-<!-- 
-역세권 - 지하철 500m
-학세권 - 초중고 500m
-숲세권 - 근린공원 500m
-몰세권 - 대형마트 500m
-의세권 - 대형병원 500m
-견세권 - 24시동물병원 500m
- -->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="height:640px">
-
     <!-- Main content -->
-	<div id="map"></div>
-	
-  </div>
-  <!-- /.content-wrapper -->
+		<div class="map_wrap">
+		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
+		    <!-- 지도타입 컨트롤 div 입니다 -->
+		    <div class="custom_typecontrol radius_border">
+		        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
+		        <span id="btnSkyview" class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+		    </div>
+		    <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+		    <div class="custom_zoomcontrol radius_border"> 
+		        <span onclick="zoomIn()"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
+		        <span onclick="zoomOut()"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+		    </div>
+		</div>
+    </div>
+  </div> <!-- /.content-wrapper -->
   
   
   <footer class="main-footer p-2">
@@ -240,89 +274,146 @@
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-    
   </aside><!-- /.control-sidebar -->
   
 </div><!-- ./wrapper -->
 
-
-
+<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 <script type="text/javascript">
-	// VWorld Map attribuions
-	var vworldMapAttr = 'Data by <a href="http://map.vworld.kr/">VWORLD MAP';
-	
-	// VWorld Base MAP XYZ URL
-	var vworldMapBaseMAPUrl = 'http://xdworld.vworld.kr:8080/2d/Base/201512/{z}/{x}/{y}.png';
 
-	var view = new ol.View({
-		center : ol.proj.transform([ 127, 37 ], 'EPSG:4326', 'EPSG:3857'),
-// 		center : [ 14129881.51978185, 4494741.861425608 ],
-		zoom : 9,
-		minZoom: 6, 
-		maxZoom: 16
-	});
 
-	var tileSource = new ol.source.TileWMS({
-		url : 'http://127.0.0.1:8080/geoserver/wms',
-		params : {
-			VERSION : '1.3.0',
-			LAYERS : 'mini:anyang_umd',
-			//LAYERS : 'seoul:admin_emd,seoul:subway,seoul:subway_station',
-			WIDTH : 256,
-			HEIGHT : 256,
- 			STYLES : 'ANYANG_UMD',
-			CRS : 'EPSG:5174',
-			TILED : true
-		},
-		serverType : 'geoserver'
-	});
-	
-	
-	
-	
-	// VWorld Base MAP
-	var vworldBaseMap = new ol.Map({
-		target : 'map',
-		renderer : 'canvas',
-		layers : [
-			new ol.layer.Tile({
-				title : 'VWORLD MAP-BASE',
-				source : new ol.source.XYZ({
-					attribuions : vworldMapAttr,
-					url : vworldMapBaseMAPUrl
-				})
-			}),
-			new ol.layer.Tile({
-				source : tileSource
-			})
-		],
-		view : view
-	});
-	
-	// map.getLayers().getArray()[1].getSource().updateParams({'CQL_FILTER': 'POP2007 > 40000'});
+
+
+
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = { // 지도를 생성할 때 필요한 기본 옵션
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3 // // 지도의 레벨(확대, 축소 정도)
+};  
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
+function setMapType(maptype) { 
+var roadmapControl = document.getElementById('btnRoadmap');
+var skyviewControl = document.getElementById('btnSkyview'); 
+if (maptype === 'roadmap') {
+    map.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);    
+    roadmapControl.className = 'selected_btn';
+    skyviewControl.className = 'btn';
+} else {
+    map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);    
+    skyviewControl.className = 'selected_btn';
+    roadmapControl.className = 'btn';
+}
+}
+
+//지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+function zoomIn() {
+map.setLevel(map.getLevel() - 1);
+}
+
+//지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+function zoomOut() {
+map.setLevel(map.getLevel() + 1);
+}
+
 </script>
+
+
+
+
+
+
+<script>
+
+<!-- 조회 버튼. -->
+function search_go() {
+	
+// 	$("input:checkbox:checked").each(function() {
+// 		console.log($(this).val());
+// 	});
+	
+// 	var subway = $("input[name=subway]:checked").val();
+// 	var school = $("input[name=school]:checked").val();
+// 	var park = $("input[name=park]:checked").val();
+// 	var mall = $("input[name=mall]:checked").val();
+// 	var hospital = $("input[name=hospital]:checked").val();
+// 	var animal24 = $("input[name=animal24]:checked").val();
+	
+	let searchTypes = {
+		"subway" : $("input[name=subway]:checked").val(),
+		"school" : $("input[name=school]:checked").val(),
+		"park" : $("input[name=park]:checked").val(),
+		"mall" : $("input[name=mall]:checked").val(),
+		"hospital" : $("input[name=hospital]:checked").val(),
+		"animal24" : $("input[name=animal24]:checked").val()
+	}
+	
+	$.ajax({
+		url : "<%=request.getContextPath() %>/building/search",
+		type : "POST",
+		data : JSON.stringify(searchTypes),
+		contentType : "application/json",
+		success : function(result) {
+			
+			var vectorSource = new ol.source.Vector();
+			
+			var feature = new ol.Feature({
+				
+			})
+			
+			var vectorSource = new ol.source.Vector();
+			
+			
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	
+}
+
+<!-- 리셋 버튼. -->
+function reset_go() {
+	$("input:checkbox:checked").each(function() {
+		$(this).prop("checked", false);
+	});
+}
+</script>
+
 
 
 <!-- 체크박스 등록 및 해제 -->
 <script>
-
-function onChange() {
+	function onChange() {
+		
+		var chk_arr = [];
 	
-	var chk_arr = [];
-
-	// 체크된 리스트 가져와서 value 추출
-	$("input[name=checkbox]:checked").each(function() {
-		var chk = $(this).val();
-		chk_arr.push(chk);
-	});
-	console.log(chk_arr);
-	
-	
-	
-};
-	
-	
+		// 체크된 리스트 가져와서 value 추출
+		$("input[name=searchTypes]:checked").each(function() {
+			var chk = $(this).val();
+			chk_arr.push(chk);
+		});
+		console.log(chk_arr);
+		
+	};
 </script>
+
+
+
+
+
+
+
+
 
 
 <!-- jQuery -->

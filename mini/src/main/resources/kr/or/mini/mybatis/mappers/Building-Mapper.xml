@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Building-Mapper">
+
+	<resultMap type="building" id="buildingMap">
+		<result column="gid" property="gid" />
+		<result column="id" property="id" />
+		<result column="dong_id" property="dongId" />
+		<result column="dong_nm" property="dongNm" />
+		<result column="addr" property="addr" />
+		<result column="base_year" property="baseYear" />
+		<result column="base_month" property="baseMonth" />
+		<result column="nm" property="nm" />
+		<result column="x_coordi" property="xCoordi" />
+		<result column="y_coordi" property="yCoordi" />
+		<result column="average" property="average" />
+		<result column="total" property="total" />
+		<result column="pyeong" property="pyeong" />
+		<result column="room_cnt" property="roomCnt" />
+		<result column="average1" property="average1" />
+		<result column="average2" property="average2" />
+		<result column="average3" property="average3" />
+		<result column="average4" property="average4" />
+		<result column="geom" property="geom" />
+	</resultMap>
+
+
+<select id="test" resultMap="buildingMap">
+	select *
+	  from building
+</select>
+
+<select id="selectBuildingListBySearchTypes" resultMap="buildingMap">
+	
+	select distinct b.*
+	  from building b
+	  <if test="subway != null">
+		 , subway_500m w
+	  </if>
+	  <if test="school != null">
+		 , school_500m s
+	  </if>
+	  <if test="park != null">
+		 , park_500m p
+	  </if>
+	  <if test="mall != null">
+		 , mall_500m m
+	  </if>
+	  <if test="hospital != null">
+		 , hospital_500m h
+	  </if>
+	  <if test="animal24 != null">
+		 , animal24_500m a
+	  </if>
+	  
+	 where 1=1
+	 
+	  <if test="subway != null">
+	   and ST_Intersects(b.geom, w.geom) = true
+	  </if>
+	  <if test="school != null">
+	   and ST_Intersects(b.geom, s.geom) = true
+	  </if>
+	  <if test="park != null">
+	   and ST_Intersects(b.geom, p.geom) = true
+	  </if>
+	  <if test="mall != null">
+	   and ST_Intersects(b.geom, m.geom) = true
+	  </if>
+	  <if test="hospital != null">
+	   and ST_Intersects(b.geom, h.geom) = true
+	  </if>
+	  <if test="animal24 != null">
+	   and ST_Intersects(b.geom, a.geom) = true
+	  </if>
+
+</select>
+
+
+</mapper>

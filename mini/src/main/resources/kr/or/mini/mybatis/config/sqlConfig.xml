@@ -6,8 +6,9 @@
 <configuration>
 	<typeAliases>
 		
-		<!-- TEST -->
-		<typeAlias type="kr.or.mini.dto.HomeDto" alias="HomeDto" />
+		<!--  -->
+		<typeAlias type="kr.or.mini.dto.BuildingVO" alias="building" />
+		<typeAlias type="kr.or.mini.dto.SearchTypeVO" alias="searchType" />
 	
 	</typeAliases>
 </configuration>
