@@ -2,16 +2,28 @@ package kr.or.mini.command;
 
 import java.util.List;
 
+import kr.or.mini.dto.SearchTypeVO;
+
 public class SearchCommand {
-	
-	private List<String> searchTypes;
+
+	private List<String> searchList;   // 검색 세권 목록.
 
 	
-	public List<String> getSearchTypes() {
-		return searchTypes;
+	public SearchTypeVO toSerchTypeVO() throws Exception {
+		SearchTypeVO serch = new SearchTypeVO();
+		
+		for (String str : searchList) {
+			System.out.println(str);
+		}
+		
+		
+		
+		return serch;
 	}
-	public void setSearchTypes(List<String> searchTypes) {
-		this.searchTypes = searchTypes;
-	}
-
+	
+	
+	
+	
+	
+	
 }

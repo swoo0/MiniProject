@@ -285,15 +285,16 @@ mapOption = { // 지도를 생성할 때 필요한 기본 옵션
     center: new kakao.maps.LatLng(37.398013477648334, 126.93536661667916), // 지도의 중심좌표
     level: 6 // // 지도의 레벨(확대, 축소 정도)
 };  
+
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-// 마커 클러스터러를 생성합니다 
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 3 // 클러스터 할 최소 지도 레벨 
-});
 
+var markerPosition  = new kakao.maps.LatLng(432515.222077521, 196878.417945288); 
+
+//마커를 생성합니다
+var marker = new kakao.maps.Marker({
+ 	position: markerPosition
+});
 
 /* // 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
 function setMapType(maptype) { 
@@ -340,23 +341,33 @@ function search_go() {
 		contentType : "application/json",
 		success : function(points) {
 			
+		    var positions = [];
+			for (i of points) {
+				
+			    var data = {
+			        title: i.nm, 
+			        latlng: new kakao.maps.LatLng(i.y, i.x)
+			    }
+				// 객체 배열에 추가.
+				positions.push(data);
+			}
+			
 			// 마커 이미지의 이미지 주소
 			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-		    // 마커 이미지 크기
-		    var imageSize = new kakao.maps.Size(24, 35); 
-		    // 마커 이미지를 생성   
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 			
-	        var markers = $(points).map(function(i, position) {
-	            return new kakao.maps.Marker({
-	                position : new kakao.maps.LatLng(position.y, position.x),
-			        title : position.nm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			for (var i = 0; i < positions.length; i++) {
+			    // 마커 이미지 크기
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    // 마커 이미지를 생성   
+    			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    // 마커 생성
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			        image : markerImage // 마커 이미지
-	            });
-	        });
-
-	        // 클러스터러에 마커들을 추가합니다
-	        clusterer.addMarkers(markers);
+			    });
+			};
 			
 		},
 		error : function(request, status, error) {

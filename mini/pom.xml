@@ -84,13 +84,18 @@
 		</dependency>
 		
 		<!-- jackson-databind -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-databind</artifactId> -->
+<!-- 			<version>${jackson.databind-version}</version> -->
+<!-- 		</dependency> -->
+
+		<!-- jackson-databind -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.databind-version}</version>
-		</dependency>
-		
-		
+         <groupId>org.codehaus.jackson</groupId>
+         <artifactId>jackson-mapper-asl</artifactId>
+         <version>1.9.13</version>
+      </dependency>
 				
 		<!-- AspectJ -->
 		<dependency>

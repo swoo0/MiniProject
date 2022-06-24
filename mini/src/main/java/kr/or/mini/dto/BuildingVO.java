@@ -22,6 +22,9 @@ public class BuildingVO {
 	public String average4;   // 과년도4평균공시가격
 	public String geom;       // 지오메트리
 	
+	public String x;
+	public String y;
+	
 	
 	public String getGid() {
 		return gid;
@@ -137,6 +140,17 @@ public class BuildingVO {
 	public void setGeom(String geom) {
 		this.geom = geom;
 	}
-	
+	public String getX() {
+		return x;
+	}
+	public void setX(String x) {
+		this.x = x;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
+	}
 	
 }

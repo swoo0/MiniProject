@@ -23,6 +23,10 @@
 		<result column="average3" property="average3" />
 		<result column="average4" property="average4" />
 		<result column="geom" property="geom" />
+
+
+		<result column="x" property="x" />
+		<result column="y" property="y" />
 	</resultMap>
 
 
@@ -33,7 +37,9 @@
 
 <select id="selectBuildingListBySearchTypes" resultMap="buildingMap">
 	
-	select distinct b.*
+	select distinct b.nm, 
+					ST_X(b.geom) as x, 
+					ST_Y(b.geom) as y
 	  from building b
 	  <if test="subway != null">
 		 , subway_500m w
@@ -57,10 +63,10 @@
 	 where 1=1
 	 
 	  <if test="subway != null">
-	   and ST_Intersects(b.geom, w.geom) = true
+       and ST_Intersects(b.geom, w.geom) = true
 	  </if>
 	  <if test="school != null">
-	   and ST_Intersects(b.geom, s.geom) = true
+       and ST_Intersects(b.geom, s.geom) = true
 	  </if>
 	  <if test="park != null">
 	   and ST_Intersects(b.geom, p.geom) = true
