@@ -294,6 +294,17 @@ var clusterer = new kakao.maps.MarkerClusterer({
     minLevel: 3 // 클러스터 할 최소 지도 레벨 
 });
 
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 
 /* // 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
 function setMapType(maptype) { 
@@ -348,9 +359,22 @@ function search_go() {
 			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 			
 	        var markers = $(points).map(function(i, position) {
+	        	
+	        	var str = "건물명 : " + position.nm + '\n' +
+	        			  "주소 : " +  position.dongNm + " " + position.addr + '\n' +
+	        			  "기준년월 : " +  position.baseYear + '.' + position.baseMonth + '\n' +
+	        			  "평균공시가격 : " +  position.average + '\n' +
+	        			  "전체공시가격 : " +  position.total + '\n' +
+	        			  "단위면적가격 : " +  position.pyeong + '\n' +
+	        			  "산정공동주택호수 : " +  position.roomCnt + '\n' +
+	        			  "과년도1평균공시가격 : " +  position.average1 + '\n' +
+	        			  "과년도2평균공시가격 : " +  position.average2 + '\n' +
+	        			  "과년도3평균공시가격 : " +  position.average3 + '\n' +
+	        			  "과년도4평균공시가격 : " +  position.average4 + '\n';
+	        	
 	            return new kakao.maps.Marker({
 	                position : new kakao.maps.LatLng(position.y, position.x),
-			        title : position.nm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			        image : markerImage // 마커 이미지
 	            });
 	        });

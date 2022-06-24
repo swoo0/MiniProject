@@ -9,7 +9,7 @@ public class BuildingVO {
 	public String addr;       // 지번
 	public String baseYear;   // 기준연도
 	public String baseMonth;  // 기준월
-	public String nm;       // 공동주택명
+	public String nm;         // 공동주택명
 	public String xCoordi;    // X좌표
 	public String yCoordi;    // Y좌표
 	public String average;    // 평균공시가격

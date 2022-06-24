@@ -37,7 +37,7 @@
 
 <select id="selectBuildingListBySearchTypes" resultMap="buildingMap">
 	
-	select distinct b.nm, 
+	select distinct b.*, 
 					ST_X(b.geom) as x, 
 					ST_Y(b.geom) as y
 	  from building b
