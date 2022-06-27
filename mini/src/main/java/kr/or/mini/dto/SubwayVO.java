@@ -1,12 +1,31 @@
 package kr.or.mini.dto;
 
 public class SubwayVO {
+
+	public String voCode;
+	public String gid;		    // 고유번호
+	public String code;			// 역구분코드
+	public String line;		    // 호선명
+	public String nm;       	// 지하철역명
+	public String latitude;     // 지번
+	public String longitude;    // 도로명주소
+	public String geom;     	// 지오메트리
 	
-	public String line;		  // 호선
-	public String nm;         // 역명
-	public String latitude;   // 위도
-	public String longitude;  // 경도
+	public String x;
+	public String y;
 	
+	public String getGid() {
+		return gid;
+	}
+	public void setGid(String gid) {
+		this.gid = gid;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public String getLine() {
 		return line;
 	}
@@ -30,6 +49,24 @@ public class SubwayVO {
 	}
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+	public String getGeom() {
+		return geom;
+	}
+	public void setGeom(String geom) {
+		this.geom = geom;
+	}
+	public String getX() {
+		return x;
+	}
+	public void setX(String x) {
+		this.x = x;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
 	}
 	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,33 +163,33 @@ html, body {width:100%;height:100%;margin:0;padding:0;}
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-          <li class="nav-header">시군구</li>
-          <li class="nav-item">
-            <div class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-			  <select id="sgg" name="sgg" class="form-control custom-select" style="width:165px">
-			  	<option value="">만안구</option>
-			  	<option value="">동안구</option>
-			  </select>
-            </div>
-          </li>
+<!--           Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+<!--           <li class="nav-header">시군구</li> -->
+<!--           <li class="nav-item"> -->
+<!--             <div class="nav-link"> -->
+<!--               <i class="far fa-circle nav-icon"></i> -->
+<!-- 			  <select id="sgg" name="sgg" class="form-control custom-select" style="width:165px"> -->
+<!-- 			  	<option value="">만안구</option> -->
+<!-- 			  	<option value="">동안구</option> -->
+<!-- 			  </select> -->
+<!--             </div> -->
+<!--           </li> -->
           
-          <li class="nav-header">읍면동</li>
-          <li class="nav-item">
-            <div class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-				<select id="emd" name="emd" class="form-control custom-select" style="width:165px">
-					<option value="">안양동</option>
-					<option value="">석수동</option>
-					<option value="">박달동</option>
-					<option value="">비산동</option>
-					<option value="">관양동</option>
-					<option value="">평촌동</option>
-					<option value="">호계동</option>
-			  </select>
-            </div>
-          </li>
+<!--           <li class="nav-header">읍면동</li> -->
+<!--           <li class="nav-item"> -->
+<!--             <div class="nav-link"> -->
+<!--               <i class="far fa-circle nav-icon"></i> -->
+<!-- 				<select id="emd" name="emd" class="form-control custom-select" style="width:165px"> -->
+<!-- 					<option value="">안양동</option> -->
+<!-- 					<option value="">석수동</option> -->
+<!-- 					<option value="">박달동</option> -->
+<!-- 					<option value="">비산동</option> -->
+<!-- 					<option value="">관양동</option> -->
+<!-- 					<option value="">평촌동</option> -->
+<!-- 					<option value="">호계동</option> -->
+<!-- 			  </select> -->
+<!--             </div> -->
+<!--           </li> -->
 		  
 		  <li class="nav-header">세권</li>
 		  <li class="nav-item">
@@ -198,27 +198,27 @@ html, body {width:100%;height:100%;margin:0;padding:0;}
 		     	<form role="form" method="post" action="building/search" name="searchBuilding">
 			      <div class="form-group d-flex flex-wrap ml-2 mb-1">
 			        <div class="form-check ml-2 mb-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="subway" value="subway">
+			          <input type="checkbox" class="form-check-input searchType" name="subway" value="subway" onchange="onChange(this);">
 			          <label class="form-check-label">역세권</label>
 			        </div>
 			        <div class="form-check ml-2 mb-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="school" value="school">
+			          <input type="checkbox" class="form-check-input searchType" name="school" value="school" onchange="onChange(this);">
 			          <label class="form-check-label">학세권</label>
 			        </div>
 			        <div class="form-check ml-2 mb-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="park" value="park">
+			          <input type="checkbox" class="form-check-input searchType" name="park" value="park" onchange="onChange(this);">
 			          <label class="form-check-label">숲세권</label>
 			        </div>
 			        <div class="form-check ml-2 mb-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="mall" value="mall">
+			          <input type="checkbox" class="form-check-input searchType" name="mall" value="mall" onchange="onChange(this);">
 			          <label class="form-check-label">몰세권</label>
 			        </div>
 			        <div class="form-check ml-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="hospital" value="hospital">
+			          <input type="checkbox" class="form-check-input searchType" name="hospital" value="hospital" onchange="onChange(this);">
 			          <label class="form-check-label">의세권</label>
 			        </div>
 			        <div class="form-check ml-2 mr-2">
-			          <input type="checkbox" class="form-check-input searchType" name="animal24" value="animal24">
+			          <input type="checkbox" class="form-check-input searchType" name="animal24" value="animal24" onchange="onChange(this);">
 			          <label class="form-check-label" >견세권</label>
 			        </div>
 			      </div>
@@ -235,9 +235,47 @@ html, body {width:100%;height:100%;margin:0;padding:0;}
           		<button type="button" class="btn btn-primary" id="resetBtn" onclick="reset_go();">초기화</button>  
           	</div>
           </div>
-		    
+       
         </ul>
+        
       </nav><!-- /.sidebar-menu -->
+      
+      <div style="position: fixed; bottom: 0; width:235px; margin-bottom: 5px">
+        <table border="1" style="width:100%;">
+        
+        	<caption style="caption-side:top;">범례</caption>
+        
+        	<tr>
+        		<th style="text-align:center;">역세권</th>
+        		<td>&nbsp;지하철역 500m</td>
+        	</tr>
+        	<tr>
+        		<th style="text-align:center;">학세권</th>
+        		<td>&nbsp;초중고등학교 500m</td>
+        	</tr>
+        	<tr>
+        		<th style="text-align:center;">숲세권</th>
+        		<td>&nbsp;근린공원 500m</td>
+        	</tr>
+        	<tr>
+        		<th style="text-align:center;">몰세권</th>
+        		<td>&nbsp;대형 쇼핑몰 500m</td>
+        	</tr>
+        	<tr>
+        		<th style="text-align:center;">의세권</th>
+        		<td>&nbsp;대형병원 500m</td>
+        	</tr>
+        	<tr>
+        		<th style="text-align:center;">견세권</th>
+        		<td>&nbsp;24시 동물병원 500m</td>
+        	</tr>
+        </table>
+      </div> 
+      	
+      
+      
+      
+      
     </div><!-- /.sidebar -->
   </aside>
 
@@ -277,8 +315,267 @@ html, body {width:100%;height:100%;margin:0;padding:0;}
 </div><!-- ./wrapper -->
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<script type="text/javascript">
+<script>
+window.onload = function() {
+	baseMarkerSetting();
+}
 
+function baseMarkerSetting() {
+	// 지하철역 마커 표시 하기.
+	$.ajax({
+		url : "<%=request.getContextPath() %>/subway",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addSubwayMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	$.ajax({
+		url : "<%=request.getContextPath() %>/school",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addSchoolMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	$.ajax({
+		url : "<%=request.getContextPath() %>/park",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addParkMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	$.ajax({
+		url : "<%=request.getContextPath() %>/mall",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addMallMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	$.ajax({
+		url : "<%=request.getContextPath() %>/hospital",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addHospitalMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+	$.ajax({
+		url : "<%=request.getContextPath() %>/animal",
+		type : "GET",
+		success : function(positions) {
+			$(positions).map(function(i, position) {
+				addAnimalMarker(position);
+			});
+		},
+		error : function(request, status, error) {
+			Swal.fire({
+				text: '에러가 발생되었습니다. 에러코드' + error,
+				icon: 'error',
+				confirmButtonColor: '#007bff',
+				confirmButtonText: '확인'
+			})
+		}
+	});
+}
+
+// 마커를 생성하고 지도위에 표시하는 함수
+function addSubwayMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : subwayImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    subwayMarkers.push(marker);
+}
+function addSchoolMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : schoolImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    schoolMarkers.push(marker);
+}
+function addParkMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : parkImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    parkMarkers.push(marker);
+}
+function addMallMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : mallImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    mallMarkers.push(marker);
+}
+function addHospitalMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : hospitalImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    hospitalMarkers.push(marker);
+}
+function addAnimalMarker(position) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    	position : new kakao.maps.LatLng(position.y, position.x),
+        image : animalImg // 마커 이미지
+    });
+    // 생성된 마커를 배열에 추가합니다
+    animalMarkers.push(marker);
+}
+
+// 지하철 마커 보이기 & 감추기
+function onChange(chkBox) {
+	if ($(chkBox).is(':checked') == true) {
+		if ($(chkBox).val() == "subway") showMarkers("subway");
+		if ($(chkBox).val() == "school") showMarkers("school");
+		if ($(chkBox).val() == "park") showMarkers("park");
+		if ($(chkBox).val() == "mall") showMarkers("mall");
+		if ($(chkBox).val() == "hospital") showMarkers("hospital");
+		if ($(chkBox).val() == "animal24") showMarkers("animal24");
+	} else {
+		if ($(chkBox).val() == "subway") hideMarkers("subway");
+		if ($(chkBox).val() == "school") hideMarkers("school");
+		if ($(chkBox).val() == "park") hideMarkers("park");
+		if ($(chkBox).val() == "mall") hideMarkers("mall");
+		if ($(chkBox).val() == "hospital") hideMarkers("hospital");
+		if ($(chkBox).val() == "animal24") hideMarkers("animal24");
+	}
+}
+
+// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수
+function showMarkers(type) {
+	if (type == "subway") setSubwayMarkers(map);
+	if (type == "school") setSchoolMarkers(map);
+	if (type == "park") setParkMarkers(map);
+	if (type == "mall") setMallMarkers(map);
+	if (type == "hospital") setHospitalMarkers(map);
+	if (type == "animal24") setAnimalMarkers(map);
+}
+// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수
+function hideMarkers(type) {
+	if (type == "subway") setSubwayMarkers(null);
+	if (type == "school") setSchoolMarkers(null);
+	if (type == "park") setParkMarkers(null);
+	if (type == "mall") setMallMarkers(null);
+	if (type == "hospital") setHospitalMarkers(null);
+	if (type == "animal24") setAnimalMarkers(null);
+}
+
+// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수
+function setSubwayMarkers(map) {
+    for (var i = 0; i < subwayMarkers.length; i++) {
+    	subwayMarkers[i].setMap(map);
+    }            
+}
+function setSchoolMarkers(map) {
+    for (var i = 0; i < schoolMarkers.length; i++) {
+    	schoolMarkers[i].setMap(map);
+    }            
+}
+function setParkMarkers(map) {
+    for (var i = 0; i < parkMarkers.length; i++) {
+    	parkMarkers[i].setMap(map);
+    }            
+}
+function setMallMarkers(map) {
+    for (var i = 0; i < mallMarkers.length; i++) {
+    	mallMarkers[i].setMap(map);
+    }            
+}
+function setHospitalMarkers(map) {
+    for (var i = 0; i < hospitalMarkers.length; i++) {
+    	hospitalMarkers[i].setMap(map);
+    }            
+}
+function setAnimalMarkers(map) {
+    for (var i = 0; i < animalMarkers.length; i++) {
+    	animalMarkers[i].setMap(map);
+    }            
+}
+
+// 마커 이미지의 이미지 주소
+var subwayImgSrc = "<%=request.getContextPath()%>/resources/img/subway.png"; 
+var schoolImgSrc = "<%=request.getContextPath() %>/resources/img/school.png"; 
+var parkImgSrc = "<%=request.getContextPath() %>/resources/img/park.png"; 
+var mallImgSrc = "<%=request.getContextPath() %>/resources/img/mall.png"; 
+var hospitalImgSrc = "<%=request.getContextPath() %>/resources/img/hospital.png"; 
+var animalImgSrc = "<%=request.getContextPath() %>/resources/img/animal.png"; 
+
+// 마커 이미지 크기
+var imageBigSize = new kakao.maps.Size(50, 50);
+var imageSize = new kakao.maps.Size(35, 35); 
+
+// 마커 이미지를 생성
+var subwayImg = new kakao.maps.MarkerImage(subwayImgSrc, imageBigSize); 
+var schoolImg = new kakao.maps.MarkerImage(schoolImgSrc, imageSize); 
+var parkImg = new kakao.maps.MarkerImage(parkImgSrc, imageBigSize); 
+var mallImg = new kakao.maps.MarkerImage(mallImgSrc, imageSize); 
+var hospitalImg = new kakao.maps.MarkerImage(hospitalImgSrc, imageSize); 
+var animalImg = new kakao.maps.MarkerImage(animalImgSrc, imageSize); 
+
+</script>
+
+
+<script type="text/javascript">
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 mapOption = { // 지도를 생성할 때 필요한 기본 옵션
@@ -287,6 +584,25 @@ mapOption = { // 지도를 생성할 때 필요한 기본 옵션
 };  
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+// 각 세권별 마커 표시
+// 지도에 표시된 마커 객체를 가지고 있는 배열
+var subwayMarkers = [];
+var schoolMarkers = [];
+var parkMarkers = [];
+var mallMarkers = [];
+var hospitalMarkers = [];
+var animalMarkers = [];
+
 // 마커 클러스터러를 생성합니다 
 var clusterer = new kakao.maps.MarkerClusterer({
     map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -294,20 +610,15 @@ var clusterer = new kakao.maps.MarkerClusterer({
     minLevel: 3 // 클러스터 할 최소 지도 레벨 
 });
 
-//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-var mapTypeControl = new kakao.maps.MapTypeControl();
-
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-var zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+// 빌딩 마커 전역변수 선언.
+var buildingMarkers = null;
 
 
 <!-- 조회 버튼. -->
 function search_go() {
+	
+	// 기존 마커클러스터 초기화
+	clusterer.clear();
 	
 	let searchTypeMap = {
 		"subway" : $("input[name=subway]:checked").val(),
@@ -324,38 +635,7 @@ function search_go() {
 		data : JSON.stringify(searchTypeMap),
 		contentType : "application/json",
 		success : function(points) {
-			
-			// 마커 이미지의 이미지 주소
-			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-		    // 마커 이미지 크기
-		    var imageSize = new kakao.maps.Size(24, 35); 
-		    // 마커 이미지를 생성   
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-			
-	        var markers = $(points).map(function(i, position) {
-	        	
-	        	var str = "건물명 : " + position.nm + '\n' +
-	        			  "주소 : " +  position.dongNm + " " + position.addr + '\n' +
-	        			  "기준년월 : " +  position.baseYear + '.' + position.baseMonth + '\n' +
-	        			  "평균공시가격 : " +  position.average + '\n' +
-	        			  "전체공시가격 : " +  position.total + '\n' +
-	        			  "단위면적가격 : " +  position.pyeong + '\n' +
-	        			  "산정공동주택호수 : " +  position.roomCnt + '\n' +
-	        			  "과년도1평균공시가격 : " +  position.average1 + '\n' +
-	        			  "과년도2평균공시가격 : " +  position.average2 + '\n' +
-	        			  "과년도3평균공시가격 : " +  position.average3 + '\n' +
-	        			  "과년도4평균공시가격 : " +  position.average4 + '\n';
-	        	
-	            return new kakao.maps.Marker({
-	                position : new kakao.maps.LatLng(position.y, position.x),
-			        title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			        image : markerImage // 마커 이미지
-	            });
-	        });
-
-	        // 클러스터러에 마커들을 추가합니다
-	        clusterer.addMarkers(markers);
-			
+			addClusterer(points);
 		},
 		error : function(request, status, error) {
 			Swal.fire({
@@ -368,33 +648,66 @@ function search_go() {
 	});
 	
 }
-
-
 </script>
-
-
-
-
-
-
 
 
 <script>
-	<!-- 리셋 버튼. -->
-	function reset_go() {
-		$("input:checkbox:checked").each(function() {
-			$(this).prop("checked", false);
-		});
-	}
+function addClusterer(points) {
+	
+	// 마커 이미지의 이미지 주소
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    // 마커 이미지 크기
+    var imageSize = new kakao.maps.Size(24, 35); 
+    // 마커 이미지를 생성   
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	
+    buildingMarkers = $(points).map(function(i, position) {
+    	
+    	var str = "건물명 : " + position.nm + '\n' +
+    			  "주소 : " +  position.dongNm + " " + position.addr + '\n' +
+    			  "기준년월 : " +  position.baseYear + '.' + position.baseMonth + '\n' +
+    			  "평균공시가격 : " +  position.average + '\n' +
+    			  "전체공시가격 : " +  position.total + '\n' +
+    			  "단위면적가격 : " +  position.pyeong + '\n' +
+    			  "산정공동주택호수 : " +  position.roomCnt + '\n' +
+    			  "과년도1평균공시가격 : " +  position.average1 + '\n' +
+    			  "과년도2평균공시가격 : " +  position.average2 + '\n' +
+    			  "과년도3평균공시가격 : " +  position.average3 + '\n' +
+    			  "과년도4평균공시가격 : " +  position.average4 + '\n';
+    	
+        return new kakao.maps.Marker({
+            position : new kakao.maps.LatLng(position.y, position.x),
+	        title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지
+        });
+    });
+
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(buildingMarkers);
+}
+
+
+<!-- 리셋 버튼. -->
+function reset_go() {
+	// 마커클러스터 마커 제거
+	clusterer.clear();
+
+	// 체크박스 해제 및 마커 hide처리
+	$("input:checkbox:checked").each(function() {
+		$(this).prop("checked", false);
+		hideMarkers("subway");
+		hideMarkers("school");
+		hideMarkers("park");
+		hideMarkers("mall");
+		hideMarkers("hospital");
+		hideMarkers("animal24");
+	});
+}
+
+function resetClusterer() {
+	clusterer.removeMarkers(buildingMarkers);
+}
 </script>
-
-
-
-
-
-
-
-
 
 
 <!-- jQuery -->

@@ -1,38 +1,31 @@
 package kr.or.mini.dto;
 
-public class SchoolVO {
+public class HospitalVO {
 
 	public String voCode;
-	public String gid;		   // 고유번호
-	public String typeNm;	   // 학교구분명
-	public String typeCd;      // 공사립구분
-	public String nm;          // 학교명
-	public String addr;        // 지번
-	public String stNmAddr;    // 도로명주소
-	public String latitude;    // 위도
-	public String longitude;   // 경도
-	public String geom;   	   // 경도
+	public String gid;			// 고유번호
+	public String nm;     		// 병원명
+	public String workType;    // 업무타입
+	public String tel;     		// 전화
+	public String add;    		// 지번
+	public String stNmAddr;   // 도로명
+	public String latitude;     // 위도
+	public String longitude;    // 경도
+	public String geom;         // 지오메트리
 	
 	public String x;
 	public String y;
-	
+	public String getVoCode() {
+		return voCode;
+	}
+	public void setVoCode(String voCode) {
+		this.voCode = voCode;
+	}
 	public String getGid() {
 		return gid;
 	}
 	public void setGid(String gid) {
 		this.gid = gid;
-	}
-	public String getTypeNm() {
-		return typeNm;
-	}
-	public void setTypeNm(String typeNm) {
-		this.typeNm = typeNm;
-	}
-	public String getTypeCd() {
-		return typeCd;
-	}
-	public void setTypeCd(String typeCd) {
-		this.typeCd = typeCd;
 	}
 	public String getNm() {
 		return nm;
@@ -40,11 +33,23 @@ public class SchoolVO {
 	public void setNm(String nm) {
 		this.nm = nm;
 	}
-	public String getAddr() {
-		return addr;
+	public String getWorkType() {
+		return workType;
 	}
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getAdd() {
+		return add;
+	}
+	public void setAdd(String add) {
+		this.add = add;
 	}
 	public String getStNmAddr() {
 		return stNmAddr;

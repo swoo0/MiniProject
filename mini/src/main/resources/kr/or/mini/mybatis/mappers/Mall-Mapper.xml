@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mall-Mapper">
+
+	<resultMap type="mall" id="mallMap">
+		<result column="gid" property="gid" />
+		<result column="type" property="type" />
+		<result column="nm" property="nm" />
+		<result column="st_nm_addr" property="stNmAddr" />
+		<result column="add" property="add" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude	" property="longitude" />
+		<result column="geom" property="geom" />
+
+		<result column="x" property="x" />
+		<result column="y" property="y" />
+	</resultMap>
+
+<select id="selectMallList" resultMap="mallMap">
+	
+	select *,
+       	   split_part(btrim(split_part(st_astext(geom),'(',2),')'),' ',1) as x,
+           split_part(btrim(split_part(st_astext(geom),'(',2),')'),' ',2) as y
+	  from mall
+
+</select>
+
+
+</mapper>

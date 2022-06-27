@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Hospital-Mapper">
+
+	<resultMap type="hospital" id="hospitalMap">
+		<result column="gid" property="gid" />
+		<result column="nm" property="nm" />
+		<result column="work_type" property="workType" />
+		<result column="tel" property="tel" />
+		<result column="add" property="add" />
+		<result column="st_nm_addr" property="stNmAddr" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude" property="longitude" />
+		<result column="geom" property="geom" />
+
+		<result column="x" property="x" />
+		<result column="y" property="y" />
+	</resultMap>
+
+<select id="selectHospitalList" resultMap="hospitalMap">
+	
+	select *,
+           split_part(btrim(split_part(st_astext(geom),'(',2),')'),' ',1) as x,
+           split_part(btrim(split_part(st_astext(geom),'(',2),')'),' ',2) as y
+	  from hospital
+
+</select>
+
+
+</mapper>
