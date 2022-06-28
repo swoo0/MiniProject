@@ -17,11 +17,8 @@ public class BuildingDAOImpl implements BuildingDAO {
 	
 	@Override
 	public List<BuildingVO> selectBuildingListBySearchTypes(SearchTypeVO searchTypes) throws Exception {
-		
 		List<BuildingVO> buildingList = session.selectList("Building-Mapper.selectBuildingListBySearchTypes", searchTypes);
-		
 		return buildingList;
-		
 	}
 
 }

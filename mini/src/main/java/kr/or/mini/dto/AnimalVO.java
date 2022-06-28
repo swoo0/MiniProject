@@ -15,7 +15,6 @@ public class AnimalVO {
 	public String x;
 	public String y;
 	
-	
 	public String getVoCode() {
 		return voCode;
 	}

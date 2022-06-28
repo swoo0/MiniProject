@@ -22,7 +22,6 @@ public class MapDAOImpl implements MapDAO {
 	@Override
 	public List<SubwayVO> selectSubwayList() throws Exception {
 		List<SubwayVO> subwayList = session.selectList("Subway-Mapper.selectSubwayList");
-		
 		return subwayList;
 	}
 

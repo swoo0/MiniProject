@@ -34,9 +34,6 @@ public class MapController {
 		List<SubwayVO> subwayList = new ArrayList<>();
 		try {
 			subwayList = mapService.getSubwayList();
-			
-			if (subwayList != null) System.out.println("지하철역 : " + subwayList.size() + "개");
-			
 			entity = new ResponseEntity<List<SubwayVO>>(subwayList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,9 +50,6 @@ public class MapController {
 		List<SchoolVO> schoolList = new ArrayList<>();
 		try {
 			schoolList = mapService.getSchoolList();
-			
-			if (schoolList != null) System.out.println("초,중,고등학교 : " + schoolList.size() + "개");
-			
 			entity = new ResponseEntity<List<SchoolVO>>(schoolList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +66,6 @@ public class MapController {
 		List<ParkVO> parkList = new ArrayList<>();
 		try {
 			parkList = mapService.getParkList();
-			
-			if (parkList != null) System.out.println("근린공원 : " + parkList.size() + "개");
-			
 			entity = new ResponseEntity<List<ParkVO>>(parkList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,9 +82,6 @@ public class MapController {
 		List<MallVO> mallList = new ArrayList<>();
 		try {
 			mallList = mapService.getMallList();
-			
-			if (mallList != null) System.out.println("대형마트 : " + mallList.size() + "개");
-			
 			entity = new ResponseEntity<List<MallVO>>(mallList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,9 +98,6 @@ public class MapController {
 		List<HospitalVO> hospitalList = new ArrayList<>();
 		try {
 			hospitalList = mapService.getHospitalList();
-			
-			if (hospitalList != null) System.out.println("대형병원 : " + hospitalList.size() + "개");
-			
 			entity = new ResponseEntity<List<HospitalVO>>(hospitalList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,9 +114,6 @@ public class MapController {
 		List<AnimalVO> animalList = new ArrayList<>();
 		try {
 			animalList = mapService.getAnimalList();
-			
-			if (animalList != null) System.out.println("24시 동물병원 : " + animalList.size() + "개");
-			
 			entity = new ResponseEntity<List<AnimalVO>>(animalList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,6 +121,5 @@ public class MapController {
 		}
 		return entity;
 	}
-	
 	
 }

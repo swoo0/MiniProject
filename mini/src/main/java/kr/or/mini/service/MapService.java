@@ -11,8 +11,6 @@ import kr.or.mini.dto.SubwayVO;
 
 public interface MapService {
 
-//	Map<String, List<Object>> getBaseMarkerList() throws Exception;
-	
 	List<SubwayVO> getSubwayList() throws Exception; 
 	List<SchoolVO> getSchoolList() throws Exception; 
 	List<ParkVO> getParkList() throws Exception; 

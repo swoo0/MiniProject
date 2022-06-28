@@ -25,7 +25,6 @@ public class BuildingVO {
 	public String x;
 	public String y;
 	
-	
 	public String getGid() {
 		return gid;
 	}

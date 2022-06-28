@@ -7,13 +7,6 @@ import kr.or.mini.dto.SearchTypeVO;
 
 public interface BuildingService {
 	
-	/**
-	 * searchTypes에 null 체크 후 쿼리문 추가.
-	 * @param searchTypes
-	 * @return
-	 * @throws Exception
-	 */
 	List<BuildingVO> getBuildingListBySearchTypes(SearchTypeVO searchTypes) throws Exception;
-	
 	
 }

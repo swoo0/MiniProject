@@ -39,8 +39,6 @@ public class BuildingController {
             String type = searchTypeIt.next();
             String value = searchTypeMap.get(type);
             
-            System.out.println(value);
-            
             if (value.equals("subway")) searchTypes.setSubway(value);
             if (value.equals("school")) searchTypes.setSchool(value);
             if (value.equals("park")) searchTypes.setPark(value);
@@ -52,10 +50,6 @@ public class BuildingController {
 		List<BuildingVO> buildingList = null;
 		try {
 			buildingList = buildingService.getBuildingListBySearchTypes(searchTypes);
-			
-			// 결과 cnt 확인.
-			if (buildingList != null) System.out.println("검색된 공용주택 갯수 : " + buildingList.size() + "개");
-			
 			entity = new ResponseEntity<List<BuildingVO>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
