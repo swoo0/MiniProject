@@ -633,7 +633,7 @@
 	    // 마커 생성
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
-	    	title : position.line + ' ' + position.nm + '역',
+	    	title : position.line.substring(1) + ' ' + position.nm + '역',
 	        image : subwayImg 	// 마커 이미지
 	    });
 	    // 생성된 마커를 배열에 추가
@@ -642,6 +642,7 @@
 	function addSchoolMarker(position) {
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
+	    	title : position.nm,
 	        image : schoolImg
 	    });
 	    schoolMarkers.push(marker);
@@ -649,6 +650,7 @@
 	function addParkMarker(position) {
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
+	    	title : position.nm,
 	        image : parkImg
 	    });
 	    parkMarkers.push(marker);
@@ -656,6 +658,7 @@
 	function addMallMarker(position) {
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
+	    	title : position.nm,
 	        image : mallImg
 	    });
 	    mallMarkers.push(marker);
@@ -663,6 +666,7 @@
 	function addHospitalMarker(position) {
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
+	    	title : position.nm,
 	        image : hospitalImg
 	    });
 	    hospitalMarkers.push(marker);
@@ -670,6 +674,7 @@
 	function addAnimalMarker(position) {
 	    var marker = new kakao.maps.Marker({
 	    	position : new kakao.maps.LatLng(position.y, position.x),
+	    	title : position.nm,
 	        image : animalImg
 	    });
 	    animalMarkers.push(marker);
