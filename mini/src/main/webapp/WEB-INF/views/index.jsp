@@ -8,21 +8,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>FORCE WAVE</title>
-	
-	<!-- GIS 관련 -->
-	<!-- OpenLayers 3.14.2 -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/ol3/v3.14.2/ol.css" type="text/css">
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/ol3/v3.14.2/ol-debug.js"></script>
-	<!-- Proj4js 2.3.6 -->
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/proj4js/2.3.6/proj4.js"></script>
-	<!-- Layer Switcher (walkermatt) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/ol3/walkermatt/ol3-layerswitcher.css" type="text/css">
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/ol3/walkermatt/ol3-layerswitcher.js"></script>
-	
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css" type="text/css">
 
-	<!-- 추가 -->
 	<!-- AdminLTE -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/adminlte.min.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
@@ -35,8 +23,6 @@
 <%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> --%>
 	<!-- JQVMap -->
 <%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/jqvmap/jqvmap.min.css"> --%>
-	<!-- Theme style -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/adminlte.min.css">
 	<!-- overlayScrollbars -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	<!-- Daterange picker -->
@@ -62,6 +48,22 @@
 		.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
 		.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
 		.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
+		
+		.wrap {position: absolute;left: 0;bottom: -35px;width: 288px;height: 132px;margin-left: -72px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+	    .wrap * {padding: 0;margin: 0;}
+	    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+	    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+	    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+	    .info .close:hover {cursor: pointer;}
+	    .info .body {position: relative;overflow: hidden;}
+	    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+	    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+/* 	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')} */
+	    .info .link {color: #5085BB;}
+		
 		.area {
 		    position: absolute;
 		    background: #fff;
@@ -72,13 +74,78 @@
 		    left: 15px;
 		    padding:2px;
 		}
-		.info {
-		    font-size: 20px;
-		    padding: 5px;
+		
+		#category {
+		    position: absolute;
+/* 		    bottom: 10px; */
+/* 		    right: 10px; */
+		    top: 7px;
+		    left: 10px;
+		    border-radius: 5px;
+		    border: 1px solid #909090;
+		    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+		    background: #fff;
+		    overflow: hidden;
+		    z-index: 2;
+		    padding: 0;
 		}
-		.info .title {
-		    font-weight: bold;
+		#category li {
+		    float: left;
+		    list-style: none;
+		    width: 70px;
+		    border-right: 1px solid #acacac;
+		    padding: 6px 0;
+		    text-align: center;
+		    cursor: pointer;
 		}
+		#category li.on {
+		    background: rgb(221, 219, 219);
+		}
+		#category li:hover {
+		    background: #ffe6e6;
+		    border-left: 1px solid #acacac;
+		    margin-left: -1px;
+		}
+		#category li:last-child{
+		    margin-right: 0;
+		    border-right: 0;
+		}
+		#category li span {
+		    display: block;
+		    margin: 0 auto 3px;
+		    width: 30px;
+		    height: 30px;
+		}
+		
+		#category li .subway-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/subway.png");
+		    background-size: 32px 32px;
+		}
+		#category li .school-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/school.png");
+		    background-size: 31px 32px;
+		}
+		#category li .park-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/park.png");
+		    background-size: 31px 32px;
+		}
+		#category li .mall-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/mall.png");
+		    background-size: 31px 32px;
+		}
+		#category li .hospital-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/hospital.png");
+		    background-size: 31px 32px;
+		}
+		#category li .animal-c {
+		    background-image:url("<%=request.getContextPath() %>/resources/images/animal.png");
+		    background-size: 31px 32px;
+		}
+		#category li .building-c {
+		    background-image:url("https://t1.kakaocdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
+		    background-size: 30px 35px;
+		}
+
 	</style>
 </head>
 
@@ -112,27 +179,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-<!--       <li class="nav-item"> -->
-<!--         <a class="nav-link" data-widget="navbar-search" href="#" role="button"> -->
-<!--           <i class="fas fa-search"></i> -->
-<!--         </a> -->
-<!--         <div class="navbar-search-block"> -->
-<!--           <form class="form-inline"> -->
-<!--             <div class="input-group input-group-sm"> -->
-<!--               <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"> -->
-<!--               <div class="input-group-append"> -->
-<!--                 <button class="btn btn-navbar" type="submit"> -->
-<!--                   <i class="fas fa-search"></i> -->
-<!--                 </button> -->
-<!--                 <button class="btn btn-navbar" type="button" data-widget="navbar-search"> -->
-<!--                   <i class="fas fa-times"></i> -->
-<!--                 </button> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--           </form> -->
-<!--         </div> -->
-<!--       </li> -->
 	  <!-- 전체화면 버튼 -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -208,8 +254,7 @@
 <!-- 			  </select> -->
 <!--             </div> -->
 <!--           </li> -->
-		  
-		  <li class="nav-header">세권</li>
+		  <li class="nav-header" style="font-size:1.2em;">세권</li>
 		  <li class="nav-item">
             <div class="nav-link d-flex">
 		      <i class="nav-icon far fa-plus-square"></i>
@@ -263,7 +308,7 @@
       <div style="max-width:235px; margin-bottom: 5px">
         <table border="1" style="width:100%;">
         
-        	<caption style="caption-side:top;">범례</caption>
+        	<caption style="caption-side:top;">세권?</caption>
         
         	<tr>
         		<th style="text-align:center;">역세권</th>
@@ -298,9 +343,40 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="height:640px">
     <!-- Main content -->
-		<div class="map_wrap">
-		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
-		</div>
+	<div class="map_wrap" id="mapwrap">
+	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	    <!-- 지도 카테고리 -->
+        <ul id="category">
+            <li id="subway" data-order="0">
+                <span class="category_bg subway-c"></span>
+                지하철
+            </li>
+            <li id="school" data-order="1">
+                <span class="category_bg school-c"></span>
+                학교
+            </li>
+            <li id="park" data-order="2">
+                <span class="category_bg park-c"></span>
+                공원
+            </li>
+            <li id="mall" data-order="3">
+                <span class="category_bg mall-c"></span>
+                쇼핑몰
+            </li>
+            <li id="hospital" data-order="4">
+                <span class="category_bg hospital-c"></span>
+                대형병원
+            </li>
+            <li id="animal" data-order="5">
+                <span class="category_bg animal-c"></span>
+                동물병원
+            </li>
+            <li id="building" data-order="6">
+                <span class="category_bg building-c"></span>
+                주택
+            </li>
+        </ul>
+	</div>
   </div> <!-- /.content-wrapper -->
   
   <footer class="main-footer p-2">
@@ -311,14 +387,7 @@
     </div>
   </footer>
   
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-  	<!-- Control sidebar content goes here -->
-  	
-  </aside><!-- /.control-sidebar -->
-  
 </div><!-- ./wrapper -->
-
 
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
@@ -817,17 +886,38 @@
 			var average3Comma = Number(position.average3).toLocaleString();
 			var average4Comma = Number(position.average4).toLocaleString();
 			
-	    	var str = "<div style='width:350px;'>" +
-		    			  "건물명 : " + position.nm + "<br>" + 
-			 			  "주소 : " +  position.dongNm + " " + position.addr + "<br>" +
-			 			  "평균공시가격 : " + averageComma + "원<br>" +
-			 			  "전체공시가격 : " + totalComma + "원<br>" +
-			 			  "단위면적가격 : " + pyeongComma + "원<br>" +
-			 			  "과년도1평균공시가격 : " + average1Comma + "원<br>" +
-			 			  "과년도2평균공시가격 : " + average2Comma + "원<br>" +
-			 			  "과년도3평균공시가격 : " + average3Comma + "원<br>" +
-			 			  "과년도4평균공시가격 : " + average4Comma + "원" +
-		 			  "</div>";
+// 	    	var str = "<div style='width:350px;'>" +
+// 		    			  "건물명 : " + position.nm + "<br>" + 
+// 			 			  "주소 : " +  position.dongNm + " " + position.addr + "<br>" +
+// 			 			  "평균공시가격 : " + averageComma + "원<br>" +
+// 			 			  "전체공시가격 : " + totalComma + "원<br>" +
+// 			 			  "단위면적가격 : " + pyeongComma + "원<br>" +
+// 			 			  "과년도1평균공시가격 : " + average1Comma + "원<br>" +
+// 			 			  "과년도2평균공시가격 : " + average2Comma + "원<br>" +
+// 			 			  "과년도3평균공시가격 : " + average3Comma + "원<br>" +
+// 			 			  "과년도4평균공시가격 : " + average4Comma + "원" +
+// 		 			  "</div>";
+		 			  
+		 			  
+		 	var str = '<div class="wrap">' + 
+				          '    <div class="info">' + 
+				          '        <div class="title">' + position.nm + 
+				          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+				          '        </div>' + 
+				          '        <div class="body">' + 
+				          '            <div class="desc">' + 
+				          '                <div class="ellipsis">' + position.stNmAddr + '</div>' + 
+// 				          '                <div class="jibun ellipsis">(우) ' +  + ' (지번) ' + position.addr + '</div>' + 
+// 				          '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+				          '            </div>' + 
+				          '            <div id="chartDiv">' +
+				          '                <canvas id="myChart" width="300vw" height="300vh"></canvas>' +
+				          '            </div>' + 
+				          '        </div>' + 
+				          '    </div>' +    
+				          '</div>';
+		 			  
+		 			  
 	    	
 		    // 마커에 표시할 인포윈도우를 생성합니다 
 		    var infowindow = new kakao.maps.InfoWindow({
@@ -909,7 +999,7 @@
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/adminlte.js"></script>
-
+<!-- AdminLTE Dashboard -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/pages/dashboard.js"></script>
 
 </body>
