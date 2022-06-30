@@ -49,20 +49,23 @@
 		.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
 		.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
 		
-		.wrap {position: absolute;left: 0;bottom: -35px;width: 288px;height: 132px;margin-left: -72px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+		.wrap {position: absolute;left: -178px;bottom: -33px;width: 652px;height: 252px;margin-left: -72px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
 	    .wrap * {padding: 0;margin: 0;}
-	    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+	    .wrap .info {width: 650px;height: 240px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
 	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-	    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-	    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-	    .info .close:hover {cursor: pointer;}
+	    .info .title {padding: 3px 0 0 10px;height: 30px;background: rgb(201, 203, 207);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+ 	    .info .close {position: absolute;top: 7px;right: 12px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+ 	    .info .close:hover {cursor: pointer;}
 	    .info .body {position: relative;overflow: hidden;}
-	    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-	    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-/* 	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')} */
+	    .info .desc {position: relative;margin: 5px 0 0 265px;height: 200px;}
+	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; font-size: 18px;}
+ 	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; font-size: 18px;}
+ 	    .info .chartDiv {position: absolute;top: 6px;left: 5px;width: 250px;height: 240x;border: 1px solid #ddd;color: #888;overflow: hidden;} 
+ 	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 	    .info .link {color: #5085BB;}
+		
+		.emdInfo .title {padding: 3px 0 0 10px; width:200px;height: 30px;background: rgb(201, 203, 207);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+		.emdInfo .size {margin:10px;}
 		
 		.area {
 		    position: absolute;
@@ -198,17 +201,17 @@
   <aside class="main-sidebar sidebar-light-primary elevation-4">
   
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img class="brand-image elevation-3" src="<%=request.getContextPath()%>/resources/images/logo_forcewave.png" alt="Logo" style="opacity: .8">
       <span class="brand-text font-weight-light">FORCE WAVE</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" style="position:relative;">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-2 pb-2 mb-2 d-flex">
-        <div class="info" style="font-size:1.4em;">
-          <span class="d-block">안양시 주택 입지 분석</span>
+        <div style="text-align:center; font-size:1.4em;">
+          <span class="d-block">&nbsp;&nbsp;안양시 주택 입지 분석</span>
         </div>
       </div>
 
@@ -303,12 +306,10 @@
         
       </nav><!-- /.sidebar-menu -->
       
-<!--       <div style="position: fixed; bottom: 0; width:235px; margin-bottom: 5px"> -->
-<!--         <table border="1" style="width:100%;"> -->
-      <div style="max-width:235px; margin-bottom: 5px">
+      <div style="position:absolute; bottom:0px; width:235px; margin-bottom: 7px;">
         <table border="1" style="width:100%;">
         
-        	<caption style="caption-side:top;">세권?</caption>
+        	<caption style="caption-side:top;">※ 세권의 기준</caption>
         
         	<tr>
         		<th style="text-align:center;">역세권</th>
@@ -514,15 +515,17 @@
 			
 			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경
 			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시
+			
 			kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
-				polygon.setOptions({fillColor: '#09f'});
-				
-				customOverlay.setContent('<div class="area">' + name + '</div>');
-				
-				customOverlay.setPosition(mouseEvent.latLng); 
-				customOverlay.setMap(map);
+				// 지도 레벨이 3보다 클 때만 이벤트 발생.
+				if (map.getLevel() > 4) {
+					polygon.setOptions({fillColor: '#09f'});
+					customOverlay.setContent('<div class="area">' + name + '</div>');
+					customOverlay.setPosition(mouseEvent.latLng); 
+					customOverlay.setMap(map);
+				}
 			});
-	
+
 			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경
 			kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
 			    customOverlay.setPosition(mouseEvent.latLng); 
@@ -536,56 +539,16 @@
 			
 			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 총면적을 띄웁니다.
 			kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-				var content = '<div class="info">' + 
+				var content = '<div class="emdInfo">' + 
 				            '   <div class="title">' + name + '</div>' +
-				            '   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
+				            '   <div class="size"> 총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
 				            '</div>';
 				infowindow.setContent(content); 
 				infowindow.setPosition(mouseEvent.latLng); 
 				infowindow.setMap(map);
 			});
-		
-			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 확대을 확대
-	// 	    kakao.maps.event.addListener(polygon, 'click', function() {
-		        
-	// 	        // 현재 지도 레벨에서 2레벨 확대한 레벨
-	// 	        var level = map.getLevel()-2;
-		        
-	// 	        // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
-	// 	        map.setLevel(level, {anchor: centroid(points), animate: {
-	// 	            duration: 350	// 확대 애니메이션 시간
-	// 	        }});            
-		 
-	// 	        deletePolygon(polygons);	// 폴리곤 제거      
-	// 	    });
-			
-			// 지도 위 표시되고 있는 폴리곤 제거
-	// 	    function deletePolygon(polygons) {
-	// 			for (var i = 0; i < polygons.length; i++) {
-	// 	            polygons[i].setMap(null);
-	// 	        }
-	// 	        polygons = [];
-	// 	    }
-			
 		}
 		
-		// centroid 알고리즘 (폴리곤 중심좌표 구하기 위함)
-		function centroid (points) {
-		    var i, j, len, p1, p2, f, area, x, y;
-		 
-		    area = x = y = 0;
-		 
-		    for (i = 0, len = points.length, j = len - 1; i < len; j = i++) {
-		            p1 = points[i];
-		            p2 = points[j];
-		 
-		            f = p1.y * p2.x - p2.y * p1.x;
-		            x += (p1.x + p2.x) * f;
-		            y += (p1.y + p2.y) * f;
-		            area += f * 3;
-		    }
-		    return new kakao.maps.LatLng(x / area, y / area);
-		}
 	}
 </script>
 
@@ -748,21 +711,6 @@
 	    });
 	    animalMarkers.push(marker);
 	}
-	
-
-	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, marker, infowindow) {
-	    return function() {
-	        infowindow.open(map, marker);
-	    };
-	}
-	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(infowindow) {
-	    return function() {
-	        infowindow.close();
-	    };
-	}
-	
 </script>
 
 
@@ -877,7 +825,6 @@
 	function addClusterer(points) {
 		
 		buildingMarkers = $(points).map(function(i, position) {
-			
 			var averageComma = Number(position.average).toLocaleString();
 			var totalComma = Number(position.total).toLocaleString();
 			var pyeongComma = Number(position.pyeong).toLocaleString();
@@ -885,45 +832,40 @@
 			var average2Comma = Number(position.average2).toLocaleString();
 			var average3Comma = Number(position.average3).toLocaleString();
 			var average4Comma = Number(position.average4).toLocaleString();
+
+			// 차트 그리기용 데이터
+			data = [];
+			data.push(position.average4);
+			data.push(position.average3);
+			data.push(position.average2);
+			data.push(position.average1);
+			data.push(position.average);
 			
-// 	    	var str = "<div style='width:350px;'>" +
-// 		    			  "건물명 : " + position.nm + "<br>" + 
-// 			 			  "주소 : " +  position.dongNm + " " + position.addr + "<br>" +
-// 			 			  "평균공시가격 : " + averageComma + "원<br>" +
-// 			 			  "전체공시가격 : " + totalComma + "원<br>" +
-// 			 			  "단위면적가격 : " + pyeongComma + "원<br>" +
-// 			 			  "과년도1평균공시가격 : " + average1Comma + "원<br>" +
-// 			 			  "과년도2평균공시가격 : " + average2Comma + "원<br>" +
-// 			 			  "과년도3평균공시가격 : " + average3Comma + "원<br>" +
-// 			 			  "과년도4평균공시가격 : " + average4Comma + "원" +
-// 		 			  "</div>";
-		 			  
-		 			  
 		 	var str = '<div class="wrap">' + 
 				          '    <div class="info">' + 
 				          '        <div class="title">' + position.nm + 
-				          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+// 				          '            <div class="close" onclick="closeInfoWindow(infowindow);" title="닫기"></div>' + 
 				          '        </div>' + 
 				          '        <div class="body">' + 
-				          '            <div class="desc">' + 
-				          '                <div class="ellipsis">' + position.stNmAddr + '</div>' + 
-// 				          '                <div class="jibun ellipsis">(우) ' +  + ' (지번) ' + position.addr + '</div>' + 
-// 				          '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-				          '            </div>' + 
-				          '            <div id="chartDiv">' +
-				          '                <canvas id="myChart" width="300vw" height="300vh"></canvas>' +
-				          '            </div>' + 
-				          '        </div>' + 
-				          '    </div>' +    
+				          '            <div class="chartDiv">' +
+				          '                <canvas id="myChart" width="250" height="195"></canvas>' +
+				          '            </div>' +
+				          '            <div class="desc">' +
+				          '                <div class="ellipsis">' + '주소 : ' + position.dongNm + ' ' + position.addr +  '</div>' +
+				          '                <div class="jibun ellipsis">' + '평균공시가격 : ' + averageComma +  '원</div>' +
+				          '                <div class="jibun ellipsis">' + '전체공시가격 : ' + totalComma +  '원</div>' +
+				          '                <div class="jibun ellipsis">' + '단위면적가격 : ' + pyeongComma +  '원</div>' +
+				          '                <div class="jibun ellipsis">' + '기준연월 : ' + position.baseYear + '.' + position.baseMonth +  '</div>' +
+				          '            </div>' +
+				          '        </div>' +
+				          '    </div>' +
 				          '</div>';
-		 			  
-		 			  
 	    	
 		    // 마커에 표시할 인포윈도우를 생성합니다 
 		    var infowindow = new kakao.maps.InfoWindow({
 		        content: str 	// 인포윈도우에 표시할 내용
-		    });
-	    	
+		    });		  
+
 			var marker = new kakao.maps.Marker({
 				position : new kakao.maps.LatLng(position.y, position.x),
 // 				title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
@@ -933,7 +875,7 @@
 			// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow, data));
 		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 			
 			return marker;
@@ -942,7 +884,20 @@
 	    // 클러스터러에 마커들을 추가합니다
 	    clusterer.addMarkers(buildingMarkers);
 	}
-
+	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function makeOverListener(map, marker, infowindow, data) {
+	    return function() {
+	        infowindow.open(map, marker);
+	        addChart(data);
+	    };
+	}
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+	    return function() {
+	        infowindow.close();
+	    };
+	}
 	
 	// 리셋 버튼
 	function reset_go() {
@@ -969,6 +924,55 @@
 </script>
 
 
+
+<!-- Chart.js -->
+<script>
+
+function addChart(data) {
+	
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: ['2017', '2018', '2019', '2020', '2021'],
+	        datasets: [{
+	            label: '연도별 평균공시가격',
+	            data: data,
+	            borderColor: [
+	                'rgba(255, 99, 132, 1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(255, 206, 86, 1)',
+	                'rgba(75, 192, 192, 1)',
+	                'rgba(153, 102, 255, 1)',
+	                'rgba(255, 159, 64, 1)'
+	            ],
+	            fill: false,
+	            borderWidth: 1,
+	            tension:0.1
+	        }]
+	    },
+	    options: {
+	    	responsive: false,
+	        scales: {
+	            yAxes: [{
+	            	ticks: {
+	  	              beginAtZero: false,
+	  	              maxTicksLimit: 5,
+	  	              callback: function(value, index) {
+	  	                if(value.toString().length > 8) return (Math.floor(value / 100000000)).toLocaleString("ko-KR") + "억";
+	  	                else if(value.toString().length > 4) return (Math.floor(value / 10000)).toLocaleString("ko-KR") + "만";
+	  	                else return value.toLocaleString("ko-KR"); 
+	  	              }
+	            	}
+	            }]
+	        }
+	    }
+	});
+	
+}
+</script>
+
+
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -980,7 +984,7 @@
 <!-- Bootstrap 4 -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/chart.js/Chart.min.js"></script> --%>
+<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/sparklines/sparkline.js"></script> --%>
 <!-- JQVMap -->
