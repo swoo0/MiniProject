@@ -8,7 +8,8 @@
 		
 		<!--  -->
 		<typeAlias type="kr.or.mini.dto.SearchTypeVO" alias="searchType" />
-		<typeAlias type="kr.or.mini.dto.BuildingVO" alias="building" />
+		<typeAlias type="kr.or.mini.dto.PublicBgVO" alias="publicBg" />
+		<typeAlias type="kr.or.mini.dto.PrivateBgVO" alias="privateBg" />
 		<typeAlias type="kr.or.mini.dto.SubwayVO" alias="subway" />
 		<typeAlias type="kr.or.mini.dto.SchoolVO" alias="school" />
 		<typeAlias type="kr.or.mini.dto.ParkVO" alias="park" />

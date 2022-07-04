@@ -17,137 +17,15 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Tempusdominus Bootstrap 4 -->
-<%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> --%>
-	<!-- iCheck -->
-<%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> --%>
-	<!-- JQVMap -->
-<%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/jqvmap/jqvmap.min.css"> --%>
 	<!-- overlayScrollbars -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-	<!-- Daterange picker -->
-<%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/daterangepicker/daterangepicker.css"> --%>
-	<!-- summernote -->
-<%-- 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/summernote/summernote-bs4.min.css"> --%>
 	
 	<!-- 카카오지도 API -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc1f59f75ca7c1959a90dcd3251e809&libraries=services,clusterer,drawing"></script>
+	<!-- Common.css -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
 	
 	<style>
-		html, body {width:100%;height:100%;margin:0;padding:0;} 
-		.map_wrap {position:relative;overflow:hidden;width:100%;height:100%;}
-		.radius_border{border:1px solid #919191;border-radius:5px;}     
-		.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
-		.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
-		.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
-		.custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
-		.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
-		.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
-		.custom_typecontrol .selected_btn:hover {color:#fff;}   
-		.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
-		.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
-		.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
-		.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
-		
-		.wrap {position: absolute;left: -178px;bottom: -33px;width: 652px;height: 252px;margin-left: -72px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-	    .wrap * {padding: 0;margin: 0;}
-	    .wrap .info {width: 650px;height: 240px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-	    .info .title {padding: 3px 0 0 10px;height: 30px;background: rgb(201, 203, 207);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
- 	    .info .close {position: absolute;top: 7px;right: 12px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
- 	    .info .close:hover {cursor: pointer;}
-	    .info .body {position: relative;overflow: hidden;}
-	    .info .desc {position: relative;margin: 5px 0 0 265px;height: 200px;}
-	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; font-size: 18px;}
- 	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; font-size: 18px;}
- 	    .info .chartDiv {position: absolute;top: 6px;left: 5px;width: 250px;height: 240x;border: 1px solid #ddd;color: #888;overflow: hidden;} 
- 	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-	    .info .link {color: #5085BB;}
-		
-		.emdInfo .title {padding: 3px 0 0 10px; width:200px;height: 30px;background: rgb(201, 203, 207);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-		.emdInfo .size {margin:10px;}
-		
-		.area {
-		    position: absolute;
-		    background: #fff;
-		    border: 1px solid #888;
-		    border-radius: 3px;
-		    font-size: 20px;
-		    top: -5px;
-		    left: 15px;
-		    padding:2px;
-		}
-		
-		#category {
-		    position: absolute;
-/* 		    bottom: 10px; */
-/* 		    right: 10px; */
-		    top: 7px;
-		    left: 10px;
-		    border-radius: 5px;
-		    border: 1px solid #909090;
-		    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-		    background: #fff;
-		    overflow: hidden;
-		    z-index: 2;
-		    padding: 0;
-		}
-		#category li {
-		    float: left;
-		    list-style: none;
-		    width: 70px;
-		    border-right: 1px solid #acacac;
-		    padding: 6px 0;
-		    text-align: center;
-		    cursor: pointer;
-		}
-		#category li.on {
-		    background: rgb(221, 219, 219);
-		}
-		#category li:hover {
-		    background: #ffe6e6;
-		    border-left: 1px solid #acacac;
-		    margin-left: -1px;
-		}
-		#category li:last-child{
-		    margin-right: 0;
-		    border-right: 0;
-		}
-		#category li span {
-		    display: block;
-		    margin: 0 auto 3px;
-		    width: 30px;
-		    height: 30px;
-		}
-		
-		#category li .subway-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/subway.png");
-		    background-size: 32px 32px;
-		}
-		#category li .school-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/school.png");
-		    background-size: 31px 32px;
-		}
-		#category li .park-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/park.png");
-		    background-size: 31px 32px;
-		}
-		#category li .mall-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/mall.png");
-		    background-size: 31px 32px;
-		}
-		#category li .hospital-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/hospital.png");
-		    background-size: 31px 32px;
-		}
-		#category li .animal-c {
-		    background-image:url("<%=request.getContextPath() %>/resources/images/animal.png");
-		    background-size: 31px 32px;
-		}
-		#category li .building-c {
-		    background-image:url("https://t1.kakaocdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
-		    background-size: 30px 35px;
-		}
 
 	</style>
 </head>
@@ -230,33 +108,51 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-<!--           Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-<!--           <li class="nav-header">시군구</li> -->
-<!--           <li class="nav-item"> -->
-<!--             <div class="nav-link"> -->
-<!--               <i class="far fa-circle nav-icon"></i> -->
-<!-- 			  <select id="sgg" name="sgg" class="form-control custom-select" style="width:165px"> -->
-<!-- 			  	<option value="">만안구</option> -->
-<!-- 			  	<option value="">동안구</option> -->
-<!-- 			  </select> -->
-<!--             </div> -->
-<!--           </li> -->
+          <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+          <li class="nav-header" style="font-size:1.2em;">시군구</li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+			  <select id="sgg" name="sgg" class="form-control custom-select" style="width:165px">
+			  	<option value="">만안구</option>
+			  	<option value="">동안구</option>
+			  </select>
+            </div>
+          </li>
           
-<!--           <li class="nav-header">읍면동</li> -->
-<!--           <li class="nav-item"> -->
-<!--             <div class="nav-link"> -->
-<!--               <i class="far fa-circle nav-icon"></i> -->
-<!-- 				<select id="emd" name="emd" class="form-control custom-select" style="width:165px"> -->
-<!-- 					<option value="">안양동</option> -->
-<!-- 					<option value="">석수동</option> -->
-<!-- 					<option value="">박달동</option> -->
-<!-- 					<option value="">비산동</option> -->
-<!-- 					<option value="">관양동</option> -->
-<!-- 					<option value="">평촌동</option> -->
-<!-- 					<option value="">호계동</option> -->
-<!-- 			  </select> -->
-<!--             </div> -->
-<!--           </li> -->
+          <li class="nav-header" style="font-size:1.2em;">읍면동</li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+				<select id="emd" name="emd" class="form-control custom-select" style="width:165px">
+					<option value="">안양동</option>
+					<option value="">석수동</option>
+					<option value="">박달동</option>
+					<option value="">비산동</option>
+					<option value="">관양동</option>
+					<option value="">평촌동</option>
+					<option value="">호계동</option>
+			  </select>
+            </div>
+          </li>
+          
+          <li class="nav-header" style="font-size:1.2em;">주거형태</li>
+          <li class="nav-item">
+            <div class="nav-link d-flex">
+			  <div class="form-group d-flex">
+				<div class="form-check ml-1 mr-3">
+					<input class="form-check-input" type="radio" name="bgType" value="public" checked> 
+					<label class="form-check-label">공동주택</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="bgType" value="private">
+					<label class="form-check-label">개별주택</label>
+				</div>
+			  </div>
+			  
+            </div>
+          </li>
+
 		  <li class="nav-header" style="font-size:1.2em;">세권</li>
 		  <li class="nav-item">
             <div class="nav-link d-flex">
@@ -405,16 +301,101 @@
 <!-- 기본 맵 세팅 -->
 <script>
 	var mapContainer = document.getElementById('map') // 지도를 표시할 div
+	
+	// 안양시 중심의 디폴트 중심좌표
 	var mapCenter = new kakao.maps.LatLng(37.407070047740696, 126.93536661667916);
 	
 	mapOption = { 	// 지도를 생성할 때 필요한 기본 옵션
-	    center: new kakao.maps.LatLng(37.407070047740696, 126.93536661667916), // 지도의 중심좌표
+	    center: mapCenter, // 지도의 중심좌표
 	    level: 7 	// 지도의 레벨(확대, 축소 정도)
 	};  
 	var map = new kakao.maps.Map(mapContainer, mapOption),
 		customOverlay = new kakao.maps.CustomOverlay({}),
 		infowindow = new kakao.maps.InfoWindow({removable: true});
 	
+	// 도형 스타일을 변수로 설정합니다
+	var strokeColor = '#39f',
+		fillColor = '#cce6ff',
+		fillOpacity = 0.5,
+		hintStrokeStyle = 'dash';
+	
+	
+	/* Drawing Manager */
+	// Drawing Manager를 생성할 때 사용할 옵션
+	var options = {
+		    map: map, // Drawing Manager로 그리기 요소를 그릴 map 객체
+		    drawingMode: [
+		        kakao.maps.Drawing.OverlayType.MARKER,
+		        kakao.maps.Drawing.OverlayType.ARROW,
+		        kakao.maps.Drawing.OverlayType.POLYLINE,
+		        kakao.maps.Drawing.OverlayType.RECTANGLE,
+		        kakao.maps.Drawing.OverlayType.CIRCLE,
+		        kakao.maps.Drawing.OverlayType.ELLIPSE,
+		        kakao.maps.Drawing.OverlayType.POLYGON
+		    ],
+		    // 사용자에게 제공할 그리기 가이드 툴팁
+		    // 사용자에게 도형을 그릴때, 드래그할때, 수정할때 가이드 툴팁을 표시하도록 설정
+		    guideTooltip: ['draw', 'drag', 'edit'], 
+		    markerOptions: {
+		        draggable: true,
+		        removable: true
+		    },
+		    arrowOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        hintStrokeStyle: hintStrokeStyle
+		    },
+		    polylineOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        hintStrokeStyle: hintStrokeStyle
+		    },
+		    rectangleOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        fillColor: fillColor,
+		        fillOpacity: fillOpacity
+		    },
+		    circleOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        fillColor: fillColor,
+		        fillOpacity: fillOpacity
+		    },
+		    ellipseOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        fillColor: fillColor,
+		        fillOpacity: fillOpacity
+		    },
+		    polygonOptions: {
+		        draggable: true,
+		        removable: true,
+		        strokeColor: strokeColor,
+		        fillColor: fillColor,
+		        fillOpacity: fillOpacity
+		    }
+		};
+	
+	// 위에 작성한 옵션으로 Drawing Manager를 생성
+	var manager = new kakao.maps.Drawing.DrawingManager(options);
+
+	// Toolbox를 생성
+	// Toolbox 생성 시 위에서 생성한 DrawingManager 객체를 설정
+	// DrawingManager 객체를 꼭 설정해야만 그리기 모드와 매니저의 상태를 툴박스에 설정
+	var toolbox = new kakao.maps.Drawing.Toolbox({drawingManager: manager});
+	
+	// 지도 위에 Toolbox를 표시
+	// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOP은 위 가운데를 의미
+	map.addControl(toolbox.getElement(), kakao.maps.ControlPosition.RIGHT);
+	
+	
+	/* 컨트롤러 */
 	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성
 	var mapTypeControl = new kakao.maps.MapTypeControl();
 	
@@ -789,110 +770,214 @@
 
 	// 조회 버튼
 	function search_go() {
+		
 		// 기존 마커클러스터 초기화
 		clusterer.clear();
 		
-		let searchTypeMap = {
-			"subway" : $("input[name=subway]:checked").val(),
-			"school" : $("input[name=school]:checked").val(),
-			"park" : $("input[name=park]:checked").val(),
-			"mall" : $("input[name=mall]:checked").val(),
-			"hospital" : $("input[name=hospital]:checked").val(),
-			"animal24" : $("input[name=animal24]:checked").val()
-		}
-	    
-		$.ajax({
-			url : "<%=request.getContextPath() %>/building/search",
-			type : "POST",
-			data : JSON.stringify(searchTypeMap),
-			contentType : "application/json",
-			success : function(points) {
-				addClusterer(points);
-			},
-			error : function(request, status, error) {
-				Swal.fire({
-					text: '에러가 발생되었습니다. 에러코드' + error,
-					icon: 'error',
-					confirmButtonColor: '#007bff',
-					confirmButtonText: '확인'
-				})
+		console.log($('input[name=bgType]:checked').val());
+		
+		// 공동주택 조회 시.
+		if ($('input[name=bgType]:checked').val() == "public") {
+			
+			let searchTypeMap = {
+				"public" : $("input[name=subway]:checked").val(),
+				"subway" : $("input[name=subway]:checked").val(),
+				"school" : $("input[name=school]:checked").val(),
+				"park" : $("input[name=park]:checked").val(),
+				"mall" : $("input[name=mall]:checked").val(),
+				"hospital" : $("input[name=hospital]:checked").val(),
+				"animal24" : $("input[name=animal24]:checked").val()
 			}
-		});
+		    
+			$.ajax({
+				url : "<%=request.getContextPath() %>/building/public/search",
+				type : "POST",
+				data : JSON.stringify(searchTypeMap),
+				contentType : "application/json",
+				success : function(points) {
+					addClusterer(points);
+				},
+				error : function(request, status, error) {
+					Swal.fire({
+						text: '에러가 발생되었습니다. 에러코드' + error,
+						icon: 'error',
+						confirmButtonColor: '#007bff',
+						confirmButtonText: '확인'
+					})
+				}
+			});
+		
+			
+		// 개별주택 조회 시
+		} else {
+			let searchTypeMap = {
+				"public" : $("input[name=subway]:checked").val(),
+				"subway" : $("input[name=subway]:checked").val(),
+				"school" : $("input[name=school]:checked").val(),
+				"park" : $("input[name=park]:checked").val(),
+				"mall" : $("input[name=mall]:checked").val(),
+				"hospital" : $("input[name=hospital]:checked").val(),
+				"animal24" : $("input[name=animal24]:checked").val()
+			}
+		    
+			$.ajax({
+				url : "<%=request.getContextPath() %>/building/private/search",
+				type : "POST",
+				data : JSON.stringify(searchTypeMap),
+				contentType : "application/json",
+				success : function(points) {
+					addClusterer(points);
+				},
+				error : function(request, status, error) {
+					Swal.fire({
+						text: '에러가 발생되었습니다. 에러코드' + error,
+						icon: 'error',
+						confirmButtonColor: '#007bff',
+						confirmButtonText: '확인'
+					})
+				}
+			});
+		}
 		
 	}
 
 	// 마커 클러스터 추가 
 	function addClusterer(points) {
 		
-		buildingMarkers = $(points).map(function(i, position) {
-			var averageComma = Number(position.average).toLocaleString();
-			var totalComma = Number(position.total).toLocaleString();
-			var pyeongComma = Number(position.pyeong).toLocaleString();
-			var average1Comma = Number(position.average1).toLocaleString();
-			var average2Comma = Number(position.average2).toLocaleString();
-			var average3Comma = Number(position.average3).toLocaleString();
-			var average4Comma = Number(position.average4).toLocaleString();
-
-			// 차트 그리기용 데이터
-			data = [];
-			data.push(position.average4);
-			data.push(position.average3);
-			data.push(position.average2);
-			data.push(position.average1);
-			data.push(position.average);
+		console.log(points[0]);
+		console.log('points[0]["nm"] : ' + points[0]["nm"]);
+		console.log('points[0]["price"] : ' + points[0]["price"]);
+		
+		if (points[0]["nm"] != null || points[0]["nm"] != undefined) {
+		
+			buildingMarkers = $(points).map(function(i, position) {
+				var averageComma = Number(position.average).toLocaleString();
+				var totalComma = Number(position.total).toLocaleString();
+				var pyeongComma = Number(position.pyeong).toLocaleString();
+				var average1Comma = Number(position.average1).toLocaleString();
+				var average2Comma = Number(position.average2).toLocaleString();
+				var average3Comma = Number(position.average3).toLocaleString();
+				var average4Comma = Number(position.average4).toLocaleString();
+	
+				// 차트 그리기용 데이터
+				data = [];
+				data.push(position.average4);
+				data.push(position.average3);
+				data.push(position.average2);
+				data.push(position.average1);
+				data.push(position.average);
+				
+	// 			console.log(position.nm);
+				
+			 	var str = '<div class="wrap">' + 
+					          '    <div class="info">' + 
+					          '        <div class="title">' + position.nm + 
+	// 				          '            <div class="close" onclick="closeInfoWindow(infowindow);" title="닫기"></div>' + 
+					          '        </div>' + 
+					          '        <div class="body">' + 
+					          '            <div class="chartDiv">' +
+					          '                <canvas id="myChart" width="250" height="195"></canvas>' +
+					          '            </div>' +
+					          '            <div class="desc">' +
+					          '                <div class="ellipsis">' + '주소 : ' + position.dongNm + ' ' + position.addr +  '</div>' +
+					          '                <div class="jibun ellipsis">' + '평균공시지가 : ' + averageComma +  '원</div>' +
+					          '                <div class="jibun ellipsis">' + '단위면적가격 : ' + pyeongComma +  '원</div>' +
+					          '                <div class="jibun ellipsis">' + '기준연월 : ' + position.baseYear + '.' + position.baseMonth +  '</div>' +
+					          '            </div>' +
+					          '        </div>' +
+					          '    </div>' +
+					          '</div>';
+		    	
+			    // 마커에 표시할 인포윈도우를 생성
+			    var infowindow = new kakao.maps.InfoWindow({
+			        content: str 	// 인포윈도우에 표시할 내용
+			    });		  
+	
+				var marker = new kakao.maps.Marker({
+					position : new kakao.maps.LatLng(position.y, position.x),
+	// 				title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시
+					image : markerImage // 마커 이미지
+				});
+				
+				// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록
+			    // 이벤트 리스너로는 클로저를 만들어 등록
+			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록
+			    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow, data));
+			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+				
+				return marker;
+		    });
 			
-		 	var str = '<div class="wrap">' + 
-				          '    <div class="info">' + 
-				          '        <div class="title">' + position.nm + 
-// 				          '            <div class="close" onclick="closeInfoWindow(infowindow);" title="닫기"></div>' + 
-				          '        </div>' + 
-				          '        <div class="body">' + 
-				          '            <div class="chartDiv">' +
-				          '                <canvas id="myChart" width="250" height="195"></canvas>' +
-				          '            </div>' +
-				          '            <div class="desc">' +
-				          '                <div class="ellipsis">' + '주소 : ' + position.dongNm + ' ' + position.addr +  '</div>' +
-				          '                <div class="jibun ellipsis">' + '평균공시가격 : ' + averageComma +  '원</div>' +
-				          '                <div class="jibun ellipsis">' + '전체공시가격 : ' + totalComma +  '원</div>' +
-				          '                <div class="jibun ellipsis">' + '단위면적가격 : ' + pyeongComma +  '원</div>' +
-				          '                <div class="jibun ellipsis">' + '기준연월 : ' + position.baseYear + '.' + position.baseMonth +  '</div>' +
-				          '            </div>' +
-				          '        </div>' +
-				          '    </div>' +
-				          '</div>';
-	    	
-		    // 마커에 표시할 인포윈도우를 생성합니다 
-		    var infowindow = new kakao.maps.InfoWindow({
-		        content: str 	// 인포윈도우에 표시할 내용
-		    });		  
-
-			var marker = new kakao.maps.Marker({
-				position : new kakao.maps.LatLng(position.y, position.x),
-// 				title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-				image : markerImage // 마커 이미지
-			});
+		}
+		
+		// 개별주택 검색
+		if (points[0]["price"] != null || points[0]["price"] != undefined) {
+			buildingMarkers = $(points).map(function(i, position) {
+				var priceComma = Number(position.price).toLocaleString();
+				var price1Comma = Number(position.price1).toLocaleString();
+				var price2Comma = Number(position.price2).toLocaleString();
+				var price3Comma = Number(position.price3).toLocaleString();
+				var price4Comma = Number(position.price4).toLocaleString();
+	
+				// 차트 그리기용 데이터
+				data = [];
+				data.push(position.price4);
+				data.push(position.price3);
+				data.push(position.price2);
+				data.push(position.price1);
+				data.push(position.price);
+				
+			 	var str = '<div class="wrap">' + 
+					          '    <div class="info">' + 
+					          '        <div class="title">' +
+	// 				          '            <div class="close" onclick="closeInfoWindow(infowindow);" title="닫기"></div>' + 
+					          '        </div>' + 
+					          '        <div class="body">' + 
+					          '            <div class="chartDiv">' +
+					          '                <canvas id="myChart" width="250" height="195"></canvas>' +
+					          '            </div>' +
+					          '            <div class="desc">' +
+					          '                <div class="ellipsis">' + '주소 : ' + position.dongNm + ' ' + position.addr +  '</div>' +
+					          '                <div class="jibun ellipsis">' + '공시지가 : ' + priceComma +  '원</div>' +
+					          '                <div class="jibun ellipsis">' + '기준연월 : ' + position.baseYear + '.' + position.baseMonth +  '</div>' +
+					          '            </div>' +
+					          '        </div>' +
+					          '    </div>' +
+					          '</div>';
+		    	
+			    // 마커에 표시할 인포윈도우를 생성
+			    var infowindow = new kakao.maps.InfoWindow({
+			        content: str 	// 인포윈도우에 표시할 내용
+			    });		  
+	
+				var marker = new kakao.maps.Marker({
+					position : new kakao.maps.LatLng(position.y, position.x),
+	// 				title : str, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시
+					image : markerImage // 마커 이미지
+				});
+				
+				// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록
+			    // 이벤트 리스너로는 클로저를 만들어 등록
+			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록
+			    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow, data));
+			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+				
+				return marker;
+			})
 			
-			// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow, data));
-		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-			
-			return marker;
-	    });
-
-	    // 클러스터러에 마커들을 추가합니다
+		}
+	    // 클러스터러에 마커들을 추가
 	    clusterer.addMarkers(buildingMarkers);
 	}
 	
-	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	// 인포윈도우를 표시하는 클로저를 만드는 함수
 	function makeOverListener(map, marker, infowindow, data) {
 	    return function() {
 	        infowindow.open(map, marker);
 	        addChart(data);
 	    };
 	}
-	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	// 인포윈도우를 닫는 클로저를 만드는 함수 
 	function makeOutListener(infowindow) {
 	    return function() {
 	        infowindow.close();
@@ -977,28 +1062,10 @@ function addChart(data) {
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
 <!-- Bootstrap 4 -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/sparklines/sparkline.js"></script> --%>
-<!-- JQVMap -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jqvmap/jquery.vmap.min.js"></script> --%>
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --%>
-<!-- jQuery Knob Chart -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery-knob/jquery.knob.min.js"></script> --%>
-<!-- daterangepicker -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/moment/moment.min.js"></script> --%>
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/daterangepicker/daterangepicker.js"></script> --%>
-<!-- Tempusdominus Bootstrap 4 -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> --%>
-<!-- Summernote -->
-<%-- <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script> --%>
 <!-- overlayScrollbars -->
 <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->

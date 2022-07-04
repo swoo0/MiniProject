@@ -3,10 +3,10 @@
 
 <mapper namespace="Building-Mapper">
 
-	<resultMap type="building" id="buildingMap">
+	<resultMap type="publicBg" id="publicBgMap">
 		<result column="gid" property="gid" />
 		<result column="id" property="id" />
-		<result column="dong_id" property="dongId" />
+		<result column="dong_code" property="dongCode" />
 		<result column="dong_nm" property="dongNm" />
 		<result column="addr" property="addr" />
 		<result column="base_year" property="baseYear" />
@@ -24,23 +24,98 @@
 		<result column="average4" property="average4" />
 		<result column="geom" property="geom" />
 
+		<result column="x" property="x" />
+		<result column="y" property="y" />
+	</resultMap>
+	
+	<resultMap type="privateBg" id="privateBgMap">
+		<result column="gid" property="gid" />
+		<result column="id" property="id" />
+		<result column="dong_code" property="dongCode" />
+		<result column="dong_nm" property="dongNm" />
+		<result column="addr" property="addr" />
+		<result column="base_year" property="baseYear" />
+		<result column="base_month" property="baseMonth" />
+		<result column="nm" property="nm" />
+		<result column="x_coordi" property="xCoordi" />
+		<result column="y_coordi" property="yCoordi" />
+		<result column="price" property="price" />
+		<result column="total" property="total" />
+		<result column="area" property="area" />
+		<result column="price1" property="price1" />
+		<result column="price2" property="price2" />
+		<result column="price3" property="price3" />
+		<result column="price4" property="price4" />
+		<result column="geom" property="geom" />
 
 		<result column="x" property="x" />
 		<result column="y" property="y" />
 	</resultMap>
 
 
-<select id="test" resultMap="buildingMap">
+<select id="test" resultMap="publicBgMap">
 	select *
-	  from building
+	  from publicBg
 </select>
 
-<select id="selectBuildingListBySearchTypes" resultMap="buildingMap">
+
+<select id="selectPublicBgListBySearchTypes" resultMap="publicBgMap">
 	
 	select distinct b.*, 
 					ST_X(b.geom) as x, 
 					ST_Y(b.geom) as y
-	  from building b
+	  from public_bg b
+	  
+	  <if test="subway != null">
+		 , subway_500m w
+	  </if>
+	  <if test="school != null">
+		 , school_500m s
+	  </if>
+	  <if test="park != null">
+		 , park_500m p
+	  </if>
+	  <if test="mall != null">
+		 , mall_500m m
+	  </if>
+	  <if test="hospital != null">
+		 , hospital_500m h
+	  </if>
+	  <if test="animal24 != null">
+		 , animal24_500m a
+	  </if>
+	  
+	 where 1=1
+	 
+	  <if test="subway != null">
+       and ST_Intersects(b.geom, w.geom) = true
+	  </if>
+	  <if test="school != null">
+       and ST_Intersects(b.geom, s.geom) = true
+	  </if>
+	  <if test="park != null">
+	   and ST_Intersects(b.geom, p.geom) = true
+	  </if>
+	  <if test="mall != null">
+	   and ST_Intersects(b.geom, m.geom) = true
+	  </if>
+	  <if test="hospital != null">
+	   and ST_Intersects(b.geom, h.geom) = true
+	  </if>
+	  <if test="animal24 != null">
+	   and ST_Intersects(b.geom, a.geom) = true
+	  </if>
+
+</select>
+
+
+<select id="selectPrivateBgListBySearchTypes" resultMap="privateBgMap">
+	
+	select distinct b.*, 
+		            split_part(btrim(split_part(st_astext(b.geom),'(',2),')'),' ',1) as x,
+		            split_part(btrim(split_part(st_astext(b.geom),'(',2),')'),' ',2) as y
+	  from private_bg b
+	  
 	  <if test="subway != null">
 		 , subway_500m w
 	  </if>

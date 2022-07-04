@@ -1,10 +1,10 @@
 package kr.or.mini.dto;
 
-public class BuildingVO {
+public class PublicBgVO {
 
 	public String gid;		  // 
 	public String id;         // 건물고유번호
-	public String dongCd;     // 법정동코드
+	public String dongCode;     // 법정동코드
 	public String dongNm;     // 법정동명
 	public String addr;       // 지번
 	public String baseYear;   // 기준연도
@@ -37,11 +37,11 @@ public class BuildingVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getDongCd() {
-		return dongCd;
+	public String getDongCode() {
+		return dongCode;
 	}
-	public void setDongCd(String dongCd) {
-		this.dongCd = dongCd;
+	public void setDongCode(String dongCode) {
+		this.dongCode = dongCode;
 	}
 	public String getDongNm() {
 		return dongNm;
@@ -151,5 +151,5 @@ public class BuildingVO {
 	public void setY(String y) {
 		this.y = y;
 	}
-	
+
 }

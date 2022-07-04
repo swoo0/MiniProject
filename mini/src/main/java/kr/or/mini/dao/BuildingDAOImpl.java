@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.or.mini.dto.BuildingVO;
+import kr.or.mini.dto.PrivateBgVO;
+import kr.or.mini.dto.PublicBgVO;
 import kr.or.mini.dto.SearchTypeVO;
 
 @Repository
@@ -16,9 +17,15 @@ public class BuildingDAOImpl implements BuildingDAO {
 	private SqlSession session;
 	
 	@Override
-	public List<BuildingVO> selectBuildingListBySearchTypes(SearchTypeVO searchTypes) throws Exception {
-		List<BuildingVO> buildingList = session.selectList("Building-Mapper.selectBuildingListBySearchTypes", searchTypes);
+	public List<PublicBgVO> selectPublicBuildingListBySearchTypes(SearchTypeVO searchTypes) throws Exception {
+		List<PublicBgVO> buildingList = session.selectList("Building-Mapper.selectPublicBgListBySearchTypes", searchTypes);
 		return buildingList;
 	}
-
+	
+	@Override
+	public List<PrivateBgVO> selectPrivateBuildingListBySearchTypes(SearchTypeVO searchTypes) throws Exception {
+		List<PrivateBgVO> buildingList = session.selectList("Building-Mapper.selectPrivateBgListBySearchTypes", searchTypes);
+		return buildingList;
+	}
+	
 }

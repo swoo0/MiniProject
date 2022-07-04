@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.or.mini.dto.BuildingVO;
+import kr.or.mini.dto.PrivateBgVO;
+import kr.or.mini.dto.PublicBgVO;
 import kr.or.mini.dto.SearchTypeVO;
 import kr.or.mini.service.BuildingService;
 
@@ -26,13 +27,15 @@ public class BuildingController {
 	@Autowired
 	BuildingService buildingService;
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/public/search", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<List<BuildingVO>> searchBuilding(@RequestBody Map<String,String> searchTypeMap, HttpServletRequest request) throws Exception {
+	public ResponseEntity<List<PublicBgVO>> searchPublicBuilding(@RequestBody Map<String,String> searchTypeMap, HttpServletRequest request) throws Exception {
 		
-		ResponseEntity<List<BuildingVO>> entity = null;
+		ResponseEntity<List<PublicBgVO>> entity = null;
 
 		SearchTypeVO searchTypes = new SearchTypeVO();
+		
+		System.out.println();
 	    
 		Iterator<String> searchTypeIt = searchTypeMap.keySet().iterator();
         while (searchTypeIt.hasNext()) {
@@ -47,13 +50,49 @@ public class BuildingController {
             if (value.equals("animal24")) searchTypes.setAnimal24(value);
         }	
 		
-		List<BuildingVO> buildingList = null;
+        List<PublicBgVO> publicBgList = null;
+        
+    	try {
+    		publicBgList = buildingService.getPublicBuildingListBySearchTypes(searchTypes);
+    		entity = new ResponseEntity<List<PublicBgVO>>(publicBgList, HttpStatus.OK);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		entity = new ResponseEntity<List<PublicBgVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+		
+		return entity;
+	}
+	
+	
+	@RequestMapping(value = "/private/search", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<List<PrivateBgVO>> searchPrivateBuilding(@RequestBody Map<String,String> searchTypeMap, HttpServletRequest request) throws Exception {
+		
+		ResponseEntity<List<PrivateBgVO>> entity = null;
+		
+		SearchTypeVO searchTypes = new SearchTypeVO();
+		
+		Iterator<String> searchTypeIt = searchTypeMap.keySet().iterator();
+		while (searchTypeIt.hasNext()) {
+			String type = searchTypeIt.next();
+			String value = searchTypeMap.get(type);
+			
+			if (value.equals("subway")) searchTypes.setSubway(value);
+			if (value.equals("school")) searchTypes.setSchool(value);
+			if (value.equals("park")) searchTypes.setPark(value);
+			if (value.equals("mall")) searchTypes.setMall(value);
+			if (value.equals("hospital")) searchTypes.setHospital(value);
+			if (value.equals("animal24")) searchTypes.setAnimal24(value);
+		}	
+		
+		List<PrivateBgVO> privateBgList = null;
+		
 		try {
-			buildingList = buildingService.getBuildingListBySearchTypes(searchTypes);
-			entity = new ResponseEntity<List<BuildingVO>>(buildingList, HttpStatus.OK);
+			privateBgList = buildingService.getPrivateBuildingListBySearchTypes(searchTypes);
+			entity = new ResponseEntity<List<PrivateBgVO>>(privateBgList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<List<BuildingVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			entity = new ResponseEntity<List<PrivateBgVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		return entity;
